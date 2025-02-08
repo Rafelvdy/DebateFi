@@ -10,6 +10,8 @@ interface Debate {
 
 interface WordCloudProps {
   debates: Debate[];
+  sortBy: 'dateDesc' | 'dateAsc' | 'sentiment';
+  sentimentRange: number;
 }
 
 interface Word {
@@ -24,16 +26,32 @@ interface PlacedWord extends Word {
   y: number;
 }
 
-const WordCloudPage: React.FC<WordCloudProps> = ({ debates }) => {
+const WordCloudPage: React.FC<WordCloudProps> = ({ debates, sortBy, sentimentRange }) => {
   const svgRef = useRef<SVGSVGElement>(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   
-  const words = useMemo(() => debates.map(debate => ({
-    text: debate.title,
-    size: 14 + (debate.sentiment * 20),
-    topic: debate.topic,
-    sentiment: debate.sentiment
-  })), [debates]);
+  const words = useMemo(() => {
+    let filteredDebates = [...debates];
+    
+    // If Community Consensus is selected, sort by sentiment
+    if (sortBy === 'sentiment') {
+      filteredDebates = filteredDebates
+        .sort((a, b) => b.sentiment - a.sentiment);
+      
+      // Only apply sentiment range filter if a range is selected (not 0)
+      if (sentimentRange > 0) {
+        filteredDebates = filteredDebates
+          .filter(debate => debate.sentiment * 100 <= sentimentRange);
+      }
+    }
+    
+    return filteredDebates.map(debate => ({
+      text: debate.title,
+      size: 14 + (debate.sentiment * 20),
+      topic: debate.topic,
+      sentiment: debate.sentiment
+    }));
+  }, [debates, sortBy, sentimentRange]);
 
   // Set up resize observer
   useEffect(() => {

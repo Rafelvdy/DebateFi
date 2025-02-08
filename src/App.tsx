@@ -116,6 +116,7 @@ const App: React.FC = () => {
       }
     } else {
       setSortBy(value as 'sentiment');
+      setSentimentRange(100);
     }
   };
 
@@ -271,7 +272,11 @@ const App: React.FC = () => {
                 <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
               </svg>
             </Link>
-            <WordCloudPage debates={demoDebates} />
+            <WordCloudPage 
+              debates={demoDebates} 
+              sortBy={sortBy} 
+              sentimentRange={sentimentRange}
+            />
           </>
         } />
       </Routes>
