@@ -504,4 +504,47 @@ body, html {
   max-width: 1200px;
   height: 80vh;
   transition: all 0.3s ease-in-out;
+}
+
+.content-section {
+  margin: 15px 0;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+.content-section h3 {
+  color: #ffffff;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.arguments-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.argument {
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+}
+
+.argument h4 {
+  color: #ffffff;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.argument p {
+  color: #d0d0d0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.description, .importance {
+  color: #d0d0d0;
+  font-size: 0.9rem;
+  line-height: 1.5;
 } 

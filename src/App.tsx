@@ -4,43 +4,45 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import WordCloudPage from './pages/WordCloudPage';
 import './App.css';
 
+interface Debate {
+  id: number;
+  description: string;
+  importance: string;
+  arguments: {
+    sideA: string;
+    sideB: string;
+  };
+  consensus: number;
+}
+
 const App: React.FC = () => {
+  const [debates, setDebates] = useState<Debate[]>([]);
+
+  useEffect(() => {
+    const fetchDebates = async () => {
+      try {
+        const response = await fetch('/api/debates');  // adjust URL to match your API endpoint
+        if (!response.ok) throw new Error('Failed to fetch debates');
+        const data = await response.json();
+        setDebates(data.debates);
+      } catch (error) {
+        console.error('Error fetching debates:', error);
+      }
+    };
+
+    fetchDebates();
+  }, []);
+
   const demoDebates = [
     {
       id: 1,
-      title: "Bitcoin's Role as Digital Gold",
-      date: "2024-03-25",
-      description: "yap",
-      topic: "Store of Value",
-      sentiment: 0.75,
-      isHotTopic: true
-    },
-    {
-      id: 2,
-      title: "Ethereum's Transition to PoS",
-      date: "2024-03-24",
-      description: "yap",
-      topic: "Consensus Mechanisms",
-      sentiment: 0.85,
-      isHotTopic: false
-    },
-    {
-      id: 3,
-      title: "Layer 2 vs Alternative L1s",
-      date: "2024-03-23",
-      description: "yap",
-      topic: "Scalability",
-      sentiment: 0.22,
-      isHotTopic: true
-    },
-    {
-      id: 4,
-      title: "DeFi's Future",
-      date: "2024-03-22",
-      description: "yap",
-      topic: "DeFi",
-      sentiment: 0.95,
-      isHotTopic: true
+      description: "Description of the debate...",
+      importance: "Why this debate matters...",
+      arguments: {
+        sideA: "First perspective...",
+        sideB: "Second perspective..."
+      },
+      consensus: 0.75
     }
   ];
 
@@ -129,22 +131,17 @@ const App: React.FC = () => {
   const getFilteredAndSortedDebates = () => {
     return demoDebates
       .filter(debate => {
-        const matchesSearch = debate.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          debate.topic.toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesSearch = debate.description.toLowerCase().includes(searchTerm.toLowerCase());
         
         if (sortBy === 'sentiment') {
-          return matchesSearch && (debate.sentiment * 100 <= sentimentRange);
+          return matchesSearch && (debate.consensus * 100 <= sentimentRange);
         }
         return matchesSearch;
       })
       .sort((a, b) => {
         switch (sortBy) {
-          case 'dateDesc':
-            return new Date(b.date).getTime() - new Date(a.date).getTime();
-          case 'dateAsc':
-            return new Date(a.date).getTime() - new Date(b.date).getTime();
           case 'sentiment':
-            return b.sentiment - a.sentiment;
+            return b.consensus - a.consensus;
           default:
             return 0;
         }
@@ -229,33 +226,42 @@ const App: React.FC = () => {
               <div className="events-list">
                 {getFilteredAndSortedDebates().map((debate) => (
                   <div key={debate.id} className="event-card">
-                    <div className="event-header">
-                      <h2>{debate.title}</h2>
-                      <span className="date">{debate.date}</span>
-                    </div>
-                    <div className="description-wrapper">
+                    <div className="content-section">
+                      <h3>Overview</h3>
                       <p className="description">{debate.description}</p>
                     </div>
-                    <div className="event-details">
-                      <span className="location">🏷️ {debate.topic}</span>
-                      {debate.isHotTopic && (
-                        <span className="announcement-badge">
-                          Hot Topic
-                        </span>
-                      )}
+
+                    <div className="content-section">
+                      <h3>Why This Matters</h3>
+                      <p className="importance">{debate.importance}</p>
                     </div>
+
+                    <div className="content-section">
+                      <h3>Key Arguments</h3>
+                      <div className="arguments-container">
+                        <div className="argument">
+                          <h4>Position A</h4>
+                          <p>{debate.arguments.sideA}</p>
+                        </div>
+                        <div className="argument">
+                          <h4>Position B</h4>
+                          <p>{debate.arguments.sideB}</p>
+                        </div>
+                      </div>
+                    </div>
+
                     <div className="sentiment-container">
                       <span>Community Consensus:</span>
                       <div className="sentiment-bar">
                         <div 
                           className="sentiment-fill"
                           style={{ 
-                            width: `${debate.sentiment * 100}%`,
-                            backgroundColor: getSentimentColor(debate.sentiment)
+                            width: `${debate.consensus * 100}%`,
+                            backgroundColor: getSentimentColor(debate.consensus)
                           }}
                         />
                         <span className="sentiment-value">
-                          {(debate.sentiment * 100).toFixed(0)}%
+                          {(debate.consensus * 100).toFixed(0)}%
                         </span>
                       </div>
                     </div>

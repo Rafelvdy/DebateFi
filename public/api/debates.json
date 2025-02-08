@@ -1,1 +1,14 @@
-[]
+{
+    "debates": [
+      {
+        "id": 1,
+        "description": "Description of the debate...",
+        "importance": "Why this debate matters...",
+        "arguments": {
+          "sideA": "First perspective...",
+          "sideB": "Second perspective..."
+        },
+        "consensus": 0.75
+      }
+    ]
+  }

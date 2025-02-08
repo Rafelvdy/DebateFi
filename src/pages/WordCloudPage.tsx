@@ -3,9 +3,14 @@ import * as d3 from 'd3';
 import './WordCloudPage.css';
 
 interface Debate {
-  title: string;
-  sentiment: number;
-  topic: string;
+  id: number;
+  description: string;
+  importance: string;
+  arguments: {
+    sideA: string;
+    sideB: string;
+  };
+  consensus: number;
 }
 
 interface WordCloudProps {
@@ -17,7 +22,6 @@ interface WordCloudProps {
 interface Word {
   text: string;
   size: number;
-  topic: string;
   sentiment: number;
 }
 
@@ -33,24 +37,21 @@ const WordCloudPage: React.FC<WordCloudProps> = ({ debates, sortBy, sentimentRan
   const words = useMemo(() => {
     let filteredDebates = [...debates];
     
-    // If Community Consensus is selected, sort by sentiment
     if (sortBy === 'sentiment') {
       filteredDebates = filteredDebates
-        .sort((a, b) => b.sentiment - a.sentiment);
+        .sort((a, b) => b.consensus - a.consensus);
       
-      // Only apply sentiment range filter if a range is selected (not 0)
       if (sentimentRange > 0) {
         filteredDebates = filteredDebates
-          .filter(debate => debate.sentiment * 100 <= sentimentRange);
+          .filter(debate => debate.consensus * 100 <= sentimentRange);
       }
     }
     
     return filteredDebates.map(debate => ({
-      text: debate.title,
-      size: 14 + (debate.sentiment * 20),
-      topic: debate.topic,
-      sentiment: debate.sentiment
-    }));
+      text: debate.description,
+      size: 14 + (debate.consensus * 20),
+      sentiment: debate.consensus
+    })) as Word[];
   }, [debates, sortBy, sentimentRange]);
 
   // Set up resize observer
@@ -160,14 +161,13 @@ const WordCloudPage: React.FC<WordCloudProps> = ({ debates, sortBy, sentimentRan
       .style("fill", d => d3.interpolateBlues(d.sentiment))
       .attr("text-anchor", "middle")
       .attr("transform", d => {
-        // Use a hash of the text to determine rotation, making it consistent for each word
         const hashCode = d.text.split('').reduce((acc, char) => char.charCodeAt(0) + ((acc << 5) - acc), 0);
         const rotation = hashCode % 2 === 0 ? 90 : 0;
         return `translate(${d.x},${d.y}) rotate(${rotation})`;
       })
       .text(d => d.text)
       .append("title")
-      .text(d => `${d.text}\nConsensus: ${Math.round(d.sentiment * 100)}%\nTopic: ${d.topic}`);
+      .text(d => `${d.text}\nConsensus: ${Math.round(d.sentiment * 100)}%`);
 
   }, [placedWords, dimensions]);
 
