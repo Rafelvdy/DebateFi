@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useMemo, useState } from 'react';
 import * as d3 from 'd3';
+import { Link } from 'react-router-dom';
 import './WordCloudPage.css';
 
 interface Debate {
@@ -29,29 +30,37 @@ interface PlacedWord extends Word {
 
 const WordCloudPage: React.FC<WordCloudProps> = ({ debates, sortBy, sentimentRange }) => {
   const svgRef = useRef<SVGSVGElement>(null);
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
   
   const words = useMemo(() => {
+    if (!debates || debates.length === 0) return [];
+    
     let filteredDebates = [...debates];
     
     if (sortBy === 'sentiment') {
       filteredDebates = filteredDebates
-        .sort((a, b) => parseFloat(b.rating) - parseFloat(a.rating));
+        .sort((a, b) => {
+          const ratingA = parseInt(a.rating) || 0;
+          const ratingB = parseInt(b.rating) || 0;
+          return ratingB - ratingA;
+        });
       
       if (sentimentRange > 0) {
         filteredDebates = filteredDebates
-          .filter(debate => parseFloat(debate.rating) <= sentimentRange);
+          .filter(debate => {
+            const rating = parseInt(debate.rating) || 0;
+            return rating <= sentimentRange;
+          });
       }
     }
     
     return filteredDebates.map(debate => ({
-      text: debate.summary,
-      size: 14 + (parseFloat(debate.rating) / 5),
-      sentiment: parseFloat(debate.rating) / 100
+      text: debate.ticker,
+      size: 14 + (parseInt(debate.rating) / 5 || 0),
+      sentiment: (parseInt(debate.rating) || 0) / 100
     })) as Word[];
   }, [debates, sortBy, sentimentRange]);
 
-  // Set up resize observer
   useEffect(() => {
     if (!svgRef.current?.parentElement) return;
 
@@ -73,75 +82,12 @@ const WordCloudPage: React.FC<WordCloudProps> = ({ debates, sortBy, sentimentRan
     return () => observer.disconnect();
   }, []);
 
-  // Memoize the word placement calculations
-  const placedWords = useMemo(() => {
-    if (dimensions.width === 0 || dimensions.height === 0) return [];
-
-    const result: PlacedWord[] = [];
-    const padding = 20;
-
-    const seededRandom = (seed: string) => {
-      const hash = seed.split('').reduce((acc, char) => char.charCodeAt(0) + ((acc << 5) - acc), 0);
-      return (hash % 100000) / 100000;
-    };
-
-    words.forEach(word => {
-      let placed = false;
-      let attempts = 0;
-      const maxAttempts = 3000;
-
-      const hashCode = word.text.split('').reduce((acc, char) => char.charCodeAt(0) + ((acc << 5) - acc), 0);
-      const isVertical = hashCode % 2 === 0;
-      const wordWidth = isVertical ? word.size : word.text.length * (word.size * 0.5);
-      const wordHeight = isVertical ? word.text.length * (word.size * 0.5) : word.size;
-
-      while (!placed && attempts < maxAttempts) {
-        const seed = `${word.text}-${attempts}`;
-        const angle = seededRandom(seed) * Math.PI * 2;
-        const radius = Math.sqrt(attempts) * 10;
-        
-        const jitter = (seededRandom(`jitter-${word.text}`) * 20) - 10;
-        const x = Math.cos(angle) * radius + jitter;
-        const y = Math.sin(angle) * radius + jitter;
-        
-        const isWithinBounds = 
-          Math.abs(x) + (wordWidth / 2) < (dimensions.width / 2) &&
-          Math.abs(y) + (wordHeight / 2) < (dimensions.height / 2);
-        
-        let hasCollision = result.some(placed => {
-          const placedHashCode = placed.text.split('').reduce((acc, char) => char.charCodeAt(0) + ((acc << 5) - acc), 0);
-          const isPlacedVertical = placedHashCode % 2 === 0;
-          
-          const placedWidth = isPlacedVertical ? placed.size : placed.text.length * (placed.size * 0.5);
-          const placedHeight = isPlacedVertical ? placed.text.length * (placed.size * 0.5) : placed.size;
-          
-          const dx = Math.abs(placed.x - x);
-          const dy = Math.abs(placed.y - y);
-          
-          return (dx < (wordWidth + placedWidth) / 2 + padding) && 
-                 (dy < (wordHeight + placedHeight) / 2 + padding);
-        });
-
-        if (!hasCollision && isWithinBounds) {
-          result.push({ ...word, x, y });
-          placed = true;
-        }
-
-        attempts++;
-      }
-    });
-
-    return result;
-  }, [words, dimensions]);
-
   useEffect(() => {
-    if (!svgRef.current || dimensions.width === 0 || dimensions.height === 0) return;
+    if (!svgRef.current || !words.length) return;
 
     const svg = d3.select(svgRef.current)
-      .attr("width", "100%")
-      .attr("height", "100%")
-      .attr("viewBox", `0 0 ${dimensions.width} ${dimensions.height}`)
-      .attr("preserveAspectRatio", "xMidYMid meet");
+      .attr("width", dimensions.width)
+      .attr("height", dimensions.height);
 
     // Clear previous content
     svg.selectAll("*").remove();
@@ -149,29 +95,37 @@ const WordCloudPage: React.FC<WordCloudProps> = ({ debates, sortBy, sentimentRan
     const g = svg.append("g")
       .attr("transform", `translate(${dimensions.width/2},${dimensions.height/2})`);
 
-    // Render all words
+    // Create word cloud layout
+    const layout = words.map((d, i) => ({
+      ...d,
+      x: (i % 3) * 100 - 100,
+      y: Math.floor(i / 3) * 50 - 100
+    }));
+
+    // Render words
     g.selectAll("text")
-      .data(placedWords)
+      .data(layout)
       .enter().append("text")
       .style("font-size", d => `${d.size}px`)
       .style("font-family", "Arial")
       .style("fill", d => d3.interpolateBlues(d.sentiment))
       .attr("text-anchor", "middle")
-      .attr("transform", d => {
-        const hashCode = d.text.split('').reduce((acc, char) => char.charCodeAt(0) + ((acc << 5) - acc), 0);
-        const rotation = hashCode % 2 === 0 ? 90 : 0;
-        return `translate(${d.x},${d.y}) rotate(${rotation})`;
-      })
+      .attr("transform", d => `translate(${d.x},${d.y})`)
       .text(d => d.text)
       .append("title")
-      .text(d => `${d.text}\nConsensus: ${Math.round(d.sentiment * 100)}%`);
+      .text(d => `Sentiment: ${Math.round(d.sentiment * 100)}%`);
 
-  }, [placedWords, dimensions]);
+  }, [words, dimensions]);
 
   return (
     <div className="wordcloud-container">
+      <Link to="/" className="menu-button" aria-label="Back to Debates">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+        </svg>
+      </Link>
       <div className="wordcloud-card">
-        <h2 className="wordcloud-title">Debate Consensus Cloud</h2>
+        <h2 className="wordcloud-title">Debate Word Cloud</h2>
         <div className="wordcloud">
           <svg ref={svgRef}></svg>
         </div>

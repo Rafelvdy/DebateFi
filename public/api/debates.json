@@ -1,11 +1,200 @@
 {
-    "prompt_num": [
-      {
-        "ticker": "{}",
-        "summary": "{}",
-        "reason": "{}",
-        "analysis": "{}",
-        "rating": "{}/100"
-      }
-    ]
-  }
+    "data": {
+        "7": {
+            "data": {
+                "ticker": "Imaro",
+                "summary": "The debate centers around the excitement at APEX CDMX and the potential of the $Imaro project, highlighting innovation in crypto.",
+                "reason": "The debate is important as it reflects the growing enthusiasm within the crypto community, particularly in relation to events like APEX CDMX. This event likely serves as a catalyst for discussions about emerging projects and community engagement in the blockchain space.",
+                "analysis": "Participants express strong enthusiasm for the energy at APEX CDMX, with multiple users promoting $Imaro as a promising project. Notable supporters include Mohamed56846120 and snow_justi46353, who emphasize innovation and potential, while others like MaksymchukVadim highlight the cultural significance of blockchain technology. There are no opposing views presented in this exchange, indicating a unified positive sentiment.",
+                "rating": "N/A",
+                "likes": 543,
+                "retweets": 65,
+                "replies": 15,
+                "url": "https://x.com/solana/status/1887997982458708339)",
+                "time": "2025-02-07 22:02:48"
+            }
+        },
+        "8": {
+            "data": {
+                "ticker": "SUI",
+                "summary": "They argue over the potential of $SUI versus $PulseChain, with supporters of both projects clashing on their merits.",
+                "reason": "The debate is significant as it reflects the competitive landscape of blockchain projects, particularly amid ongoing developments in the crypto space. The timing may relate to broader market trends and the performance of similar projects like Solana, which could have influenced opinions on $SUI's viability.",
+                "analysis": "Proponents of $PulseChain, led by iambroots, criticize $SUI, suggesting it is overhyped. Notable supporters include hexplained_com and AndyWildNine, who express strong enthusiasm for PulseChain. Conversely, supporters of $SUI, like LibertyVinceT, advocate for its utility in decentralized finance (DeFi) and question the validity of claims against it.",
+                "rating": "40/100",
+                "likes": 776,
+                "retweets": 168,
+                "replies": 14,
+                "url": "https://x.com/iambroots/status/1887987452058698228",
+                "time": "2025-02-07 22:02:48"
+            }
+        },
+        "9": {
+            "data": {
+                "ticker": "Imaro",
+                "summary": "The debate centers around the excitement and innovation at the APEX CDMX event, highlighting the Solana ecosystem and the $Imaro project.",
+                "reason": "The debate is significant as it reflects enthusiasm for blockchain innovation and community engagement, possibly influenced by the APEX CDMX event, which showcases advancements in the crypto space.",
+                "analysis": "Proponents emphasize the vibrant energy and innovation at APEX CDMX, with users like Mohamed56846120 and MaksymchukVadim praising the atmosphere and linking it to the $Imaro project. Critics or skeptics are not prominently featured in the responses, indicating a mostly positive sentiment.",
+                "rating": "85/100",
+                "likes": 543,
+                "retweets": 65,
+                "replies": 15,
+                "url": "https://x.com/solana/status/1887997982458708339",
+                "time": "2025-02-07 22:02:48"
+            }
+        },
+        "10": {
+            "data": {
+                "ticker": "N/A",
+                "summary": "The debate centers around a light-hearted tweet celebrating Saturday, with no direct conflict or significant arguments presented.",
+                "reason": "The importance of this debate is minimal, primarily serving as a friendly exchange without any contentious issues. The tweet's context suggests a general positivity in the crypto community, possibly influenced by ongoing market conditions affecting USD Coin.",
+                "analysis": "There are no opposing sides or notable arguments; the replies from users FeelWilll and peaceful_AJ express appreciation and well-wishes, indicating a supportive atmosphere without conflict.",
+                "rating": "75/100",
+                "likes": 1213,
+                "retweets": 352,
+                "replies": 63,
+                "url": "https://x.com/usa_pyorn/status/1887985388834439500",
+                "time": "2025-02-07 22:02:48"
+            }
+        },
+        "11": {
+            "data": {
+                "ticker": "SUI",
+                "summary": "The debate centers around the perceived value and potential of $SUI versus $PulseChain, with strong opinions on both sides.",
+                "reason": "The debate is significant as it reflects ongoing competition in the crypto space, particularly between new projects like SUI and established ones like PulseChain, amidst market volatility and investor sentiment shifts.",
+                "analysis": "Proponents of $PulseChain, including notable users like iambroots, argue that $SUI is overhyped and not comparable to PulseChain's potential. Critics, such as LibertyVinceT and GainRangerHeffe, acknowledge PulseChain's merits but emphasize the utility and growth of $SUI, suggesting it has substantial DeFi applications.",
+                "rating": "40/100",
+                "likes": 776,
+                "retweets": 168,
+                "replies": 14,
+                "url": "https://x.com/iambroots/status/1887987452058698228",
+                "time": "2025-02-07 22:02:48"
+            }
+        },
+        "12": {
+            "data": {
+                "ticker": "Imaro",
+                "summary": "The debate centers around the excitement at APEX CDMX and the potential of the $Imaro project, reflecting innovation in crypto.",
+                "reason": "The debate is significant as it highlights the enthusiasm surrounding blockchain events and emerging projects. The APEX CDMX event likely spurred this discussion, showcasing innovation and community engagement in the crypto space.",
+                "analysis": "Supporters of Solana and the event, like @Mohamed56846120 and @snow_justi46353, emphasize the contagious energy and innovation at APEX CDMX, while frequently mentioning the promising $Imaro project. They view these developments as transformative for the crypto landscape. Conversely, there are no notable opposing views in this debate, as all replies express excitement and positivity toward Solana and $Imaro.",
+                "rating": "N/A",
+                "likes": 543,
+                "retweets": 65,
+                "replies": 15,
+                "url": "https://x.com/solana/status/1887997982458708339",
+                "time": "2025-02-07 22:02:48"
+            }
+        },
+        "13": {
+            "data": {
+                "ticker": "N/A",
+                "summary": "The debate revolves around a humorous suggestion involving TRON, with participants repeatedly referencing \"BRIAN AL 9009,\" indicating a shared inside joke or meme.",
+                "reason": "The debate is important as it reflects community engagement and sentiment around TRON, potentially influenced by recent market trends or social events in the crypto space.",
+                "analysis": "Participants generally express a humorous or lighthearted stance, all echoing the phrase \"BRIAN AL 9009,\" with no significant counterarguments or opposition presented.",
+                "rating": "50/100",
+                "likes": 2116,
+                "retweets": 73,
+                "replies": 168,
+                "url": "https://x.com/TronkOficial/status/1887990084789551263",
+                "time": "2025-02-07 22:02:48"
+            }
+        },
+        "14": {
+            "data": {
+                "ticker": "Imaro",
+                "summary": "The debate centers around the excitement generated by Solana's presence at APEX CDMX, with discussions about innovation and the $Imaro project.",
+                "reason": "The debate is significant due to Solana's influential role in the crypto space and the potential impact of events like APEX CDMX on blockchain innovation. The mention of $Imaro suggests a growing interest in emerging projects, possibly reflecting a broader trend in the crypto market.",
+                "analysis": "Proponents, including users like Mohamed56846120, snow_justi46353, and MaksymchukVadim, express enthusiasm for the energy at APEX CDMX and highlight the $Imaro project as a promising investment. They emphasize innovation and collaboration within the blockchain community. Conversely, the replies lack critical dissent, primarily focusing on excitement and positivity surrounding Solana and related projects.",
+                "rating": "85/100",
+                "likes": 543,
+                "retweets": 65,
+                "replies": 131,
+                "url": "https://x.com/solana/status/1887997982458708339)",
+                "time": "2025-02-07 22:02:48"
+            }
+        },
+        "15": {
+            "data": {
+                "ticker": "SUI",
+                "summary": "The debate centers around the perceived value of $SUI versus $PulseChain, with claims of misinformation regarding $SUI's potential.",
+                "reason": "The debate is significant as it reflects ongoing competition between blockchain projects, particularly in the context of market positioning and community loyalty. The reference to $SUI being compared to $SOLANA indicates a push for legitimacy and investment interest in newer chains. The timing of the debate may correlate with recent developments in the blockchain space, possibly influenced by market fluctuations or announcements from competing projects.",
+                "analysis": "Proponents of $PulseChain argue that it offers superior potential and dismiss $SUI as overhyped, with notable participants like iambroots emphasizing this view. Conversely, supporters of $SUI, such as LibertyVinceT, acknowledge its merits in DeFi applications, suggesting a more nuanced perspective on blockchain utility. Other participants, like I_m_Smiley and Starseedwitch1, advocate for $PAW, introducing additional competition into the debate.",
+                "rating": "45/100",
+                "likes": 778,
+                "retweets": 168,
+                "replies": 14,
+                "url": "https://x.com/iambroots/status/1887987452058698228",
+                "time": "2025-02-07 22:02:48"
+            }
+        },
+        "16": {
+            "data": {
+                "ticker": "SUI",
+                "summary": "The debate centers around the perceived value of $SUI versus $PLS (PulseChain), with strong opinions on both sides.",
+                "reason": "The debate is significant as it reflects ongoing competition among blockchain projects. The mention of $SUI and $PLS indicates a rivalry, possibly influenced by recent market trends and community sentiments regarding emerging blockchain technologies.",
+                "analysis": "Proponents of $PLS, led by iambroots, argue that $SUI is overhyped and that PulseChain is the superior investment. Notable supporters include hexplained_com and various users promoting $PAW (PawChain) as a better alternative. Conversely, supporters of $SUI, like LibertyVinceT, acknowledge its strengths in DeFi applications, suggesting a more balanced view of its potential.",
+                "rating": "30/100",
+                "likes": 778,
+                "retweets": 168,
+                "replies": 14,
+                "url": "https://x.com/iambroots/status/1887987452058698228",
+                "time": "2025-02-07 22:02:48"
+            }
+        },
+        "17": {
+            "data": {
+                "ticker": "N/A",
+                "summary": "Lynk0x announces a memecoin launch, sparking debate about fairness and past projects.",
+                "reason": "The debate is significant due to the ongoing interest in memecoins and the potential implications for investor trust. The crypto market is sensitive to trends, and the mention of a \"fair launch\" raises concerns about transparency. This may relate to recent market fluctuations or past project failures that have affected investor sentiment.",
+                "analysis": "Proponents, like MikiMausOnSol, express excitement and support for the launch, while critics such as 420Crr question Lynk0x's motives and past performance. Other users, like scripturelogic, highlight inconsistencies regarding the \"fair launch\" claim, and Ezeinher seeks clarity on the randomness of the token.",
+                "rating": "55/100",
+                "likes": 3170,
+                "retweets": 864,
+                "replies": 444,
+                "url": "https://x.com/lynk0x/status/1887997741818638672",
+                "time": "N/A"
+            }
+        },
+        "18": {
+            "data": {
+                "ticker": "SUI",
+                "summary": "The debate centers on the perceived overhype of $SUI compared to $PLS (PulseChain), with strong support for PulseChain.",
+                "reason": "The debate is important as it reflects ongoing competition among blockchain projects, particularly in the context of market positioning. The mention of PulseChain suggests a response to recent trends in blockchain performance and community sentiment, possibly influenced by market fluctuations or technological advancements in the crypto space.",
+                "analysis": "Proponents of PulseChain, led by iambroots, argue that $SUI is overvalued and that PulseChain represents a superior investment. Notable supporters include hexplained_com and LibertyVinceT, who express enthusiasm for PulseChain's potential. Conversely, supporters of $SUI, such as LibertyVinceT, acknowledge its merits and utility in DeFi, suggesting a more balanced view of the competing projects.",
+                "rating": "35/100",
+                "likes": 776,
+                "retweets": 168,
+                "replies": 14,
+                "url": "https://x.com/iambroots/status/1887987452058698228)",
+                "time": "2025-02-07 22:02:48"
+            }
+        },
+        "19": {
+            "data": {
+                "ticker": "Imaro",
+                "summary": "The debate centers on the excitement surrounding the APEX CDMX event and the potential of the $Imaro project within the Solana ecosystem.",
+                "reason": "The debate is important as it reflects the growing interest in blockchain innovation and community engagement, particularly in Latin America. The APEX CDMX event likely catalyzed discussions about emerging projects like $Imaro amidst a vibrant crypto culture.",
+                "analysis": "Proponents, including users like Mohamed56846120 and MaksymchukVadim, emphasize the infectious energy at APEX CDMX and the potential of $Imaro as a promising project. They highlight the synergy between local culture and blockchain innovation. Critics or neutral participants, such as JerryMetax, question the launch status of projects, implying a need for clarity on developments within the Solana ecosystem.",
+                "rating": "85/100",
+                "likes": 543,
+                "retweets": 65,
+                "replies": 15,
+                "url": "https://x.com/solana/status/1887997982458708339",
+                "time": "2025-02-07 22:02:48"
+            }
+        },
+        "20": {
+            "data": {
+                "ticker": "SUI",
+                "summary": "The debate centers around the perceived value of $SUI compared to $PulseChain, with strong opinions on both sides.",
+                "reason": "The debate is important as it reflects ongoing competition in the blockchain space, particularly between emerging projects like $SUI and $PulseChain. The recent hype around $SUI may have triggered skepticism from PulseChain supporters, indicating a divide in community loyalty amid market fluctuations.",
+                "analysis": "Proponents of $PulseChain argue that $SUI is overhyped and that PulseChain is the superior choice, with multiple users expressing strong support for PulseChain. Notable participants include iambroots (advocating against $SUI), hexplained_com (supporting PulseChain), and LibertyVinceT (acknowledging both but favoring SUI for DeFi). Conversely, supporters of $SUI, like LibertyVinceT, highlight its potential and use cases, emphasizing its capabilities in DeFi.",
+                "rating": "40/100",
+                "likes": 777,
+                "retweets": 168,
+                "replies": 66,
+                "url": "https://x.com/iambroots/status/1887987452058698228",
+                "time": "2025-02-07 22:02:48"
+            }
+        }
+    }
+}
