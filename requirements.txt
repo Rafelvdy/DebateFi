@@ -89,7 +89,6 @@ nest-asyncio==1.6.0
 notebook==7.3.2
 notebook_shim==0.2.4
 numpy>=1.26.4,<1.27.0
-okpy==1.18.1
 openai==1.61.1
 overrides==7.7.0
 packaging==24.1
@@ -118,7 +117,7 @@ python-json-logger==3.2.1
 pytz==2024.1
 PyYAML==6.0.2
 referencing==0.36.2
-requests==2.32.3
+requests>=2.31
 rfc3339-validator==0.1.4
 rfc3986-validator==0.1.1
 rich==13.7.1
