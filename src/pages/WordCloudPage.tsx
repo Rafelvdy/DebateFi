@@ -23,11 +23,6 @@ interface Word {
   sentiment: number;
 }
 
-interface PlacedWord extends Word {
-  x: number;
-  y: number;
-}
-
 const WordCloudPage: React.FC<WordCloudProps> = ({ debates, sortBy, sentimentRange }) => {
   const svgRef = useRef<SVGSVGElement>(null);
   const [dimensions, setDimensions] = useState({ width: 800, height: 600 });

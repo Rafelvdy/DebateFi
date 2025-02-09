@@ -1,16 +1,12 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import WordCloudPage from './pages/WordCloudPage';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import DebateCard from './components/DebateCard';
 import './App.css';
 import { Debate } from './types/Debate';
 
 const App: React.FC = () => {
   const [debates, setDebates] = useState<Debate[]>([]);
-  const [sortBy, setSortBy] = useState<'dateDesc' | 'dateAsc' | 'sentiment'>('dateDesc');
-  const [sentimentRange, setSentimentRange] = useState(100);
-  const [dateDirection, setDateDirection] = useState<'desc' | 'asc'>('desc');
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -54,12 +50,6 @@ const App: React.FC = () => {
     // Filter out debates with N/A tickers
     filtered = filtered.filter(debate => debate.ticker !== "N/A");
 
-    // Apply sentiment range filter
-    filtered = filtered.filter(debate => {
-      const rating = parseInt(debate.rating);
-      return !isNaN(rating) && rating <= sentimentRange;
-    });
-
     // Define priority order for pinned tickers
     const pinnedOrder = ["ETH", "SOL", "BNB", "BTC"];
 
@@ -78,16 +68,8 @@ const App: React.FC = () => {
       if (aIndex !== -1) return -1;
       if (bIndex !== -1) return 1;
       
-      // For non-pinned items, apply normal sorting
-      if (sortBy === 'sentiment') {
-        return parseInt(b.rating) - parseInt(a.rating);
-      }
-      // Add other sorting logic as needed
       return 0;
     });
-
-    // Add console.log to debug
-    console.log('Filtered debates:', filtered);
 
     return filtered;
   };
@@ -170,13 +152,6 @@ const App: React.FC = () => {
               </div>
             </div>
           </div>
-        } />
-        <Route path="/wordcloud" element={
-          <WordCloudPage 
-            debates={debates}
-            sortBy={sortBy}
-            sentimentRange={sentimentRange}
-          />
         } />
       </Routes>
     </Router>
