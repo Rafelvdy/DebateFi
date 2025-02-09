@@ -11,16 +11,16 @@ twitterkey = os.getenv("TWITTER_API_KEY")  # Fetch from env variables
 
 # Get current time and round down to nearest hour
 current_time = datetime.now()
-'''
+
 start_date = current_time.replace(minute=0, second=0, microsecond=0).strftime('%Y-%m-%d_%H:%M:%S_UTC')
 
 # Add 1 hour to get the end date
 start_datetime = datetime.strptime(start_date, '%Y-%m-%d_%H:%M:%S_%Z')
 end_datetime = start_datetime + timedelta(hours=1)
 end_date = end_datetime.strftime('%Y-%m-%d_%H:%M:%S_UTC')
-'''
-start_date = "2025-02-08_18:00:00_UTC"
-end_date = "2025-02-09_04:00:00_UTC"
+
+#start_date = "2025-02-08_18:00:00_UTC"
+#end_date = "2025-02-09_04:00:00_UTC"
 # Generate hourly timestamps
 hourly_timestamps = pd.date_range(start=start_date.replace("_", " "), 
                                   end=end_date.replace("_", " "), 
