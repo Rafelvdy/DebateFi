@@ -5,13 +5,13 @@ from datetime import datetime, timedelta
 import json
 import re
 
+# Get current time and round down to nearest hour
+current_time = datetime.now()
+start_date = current_time.replace(minute=0, second=0, microsecond=0).strftime('%Y-%m-%d_%H:%M:%S_UTC')
 
-start_date = '2025-02-07_22:00:01_UTC'
-# Convert start_date string to datetime object
-start_datetime = datetime.strptime(start_date, '%Y-%m-%d_%H:%M:%S_%Z')
 # Add 1 hour to get the end date
+start_datetime = datetime.strptime(start_date, '%Y-%m-%d_%H:%M:%S_%Z')
 end_datetime = start_datetime + timedelta(hours=1)
-# Convert back to string in the same format
 end_date = end_datetime.strftime('%Y-%m-%d_%H:%M:%S_UTC')
 
 # Generate hourly timestamps
@@ -160,10 +160,11 @@ def is_bot(user):
 all_tweets = []
 
 for end_date in formatted_timestamps[1:]:
-    print(f'Searching for tweets {start_date} to {end_date}')
+    print(f'Searching for tweets {start_datetime} to {end_datetime}')
     # Loop through each crypto ticker
     for ticker in crypto_tickers:
         #print(f"Fetching tweets for {ticker}...")
+
         # Define the search parameters
         payload = {
             "query": f"(${ticker} OR {ticker} OR {ticker.lower()} OR ${ticker.lower()})",# min_replies:{min_replies} min_faves:{min_likes} min_retweets:{min_retweets} lang:en verified: True since:{start_date} until:{end_date}",
@@ -277,7 +278,7 @@ def generate_debate_summaries(df_2):
         date = row["created_at"]
         ticker = row["ticker"]
         # Original datetime string
-        date_str = "Fri Feb 07 22:02:48 +0000 2025"
+        date_str = date
         # Convert to datetime object (ignoring timezone offset)
         strip_date = datetime.strptime(date_str, "%a %b %d %H:%M:%S %z %Y")
         # Convert back to a cleaner string format
@@ -322,12 +323,25 @@ print('Summarising with openai')
 system_message = {
       "role": "system",
       "content": (
-          "You are an analysis tool that identifies debates and conflicts between influential Crypto Twitter accounts\n"
+          "You are a sophisticated Crypto Twitter debate analysis tool, designed to extract the most informative and factual insights from high-engagement crypto discussions. Your focus is on:\n\n"
+          
+          "Extracting key points from debates, prioritising discussions on blockchain technology, token utilities, and innovations.\n"
+          "Identifying the underlying narratives shaping the crypto market, including regulatory changes, partnerships, or tech upgrades.\n"
+          "Evaluating the importance of each debate based on engagement metrics and the influence of the participants.\n"
+          "Summarising both sides of arguments concisely, with emphasis on data-driven reasoning and technical comparisons.\n"
+          "Detecting any **real-world events** that might have triggered the debate (such as news, announcements, or major transactions).\n"
+
           "You measure issue importance, influence of involved accounts, and stance of participants\n"
-          "You generate detailed summaries of debates including main points, arguments of both sides, and underlying narratives\n"
           "You provide clear info about debate participants on each side and their positions\n"
           "You detect underlying real-world events that may have triggered/influenced the debate, that are inferrable from the debate content\n"
           "You must be clear, concise, direct, and factual. Make your output as information dense as possible.\n"
+
+          "**Important Guidelines:**\n"
+          "- Keep your responses concise but **rich in insights**. Do not add unnecessary fluff.\n"
+          "- Focus on **data, metrics, and technological impact** rather than emotions or generic opinions.\n"
+          "- Use **quotes from key participants** only when they add value to the analysis.\n"
+          "- Highlight **innovations, tokenomics, scalability, security features, or protocol updates** if discussed.\n"
+          "- If no technical details are mentioned, infer broader **market sentiment trends** from the debate.\n"
           
       )
   }
@@ -344,9 +358,9 @@ for debate in debate_summaries:
 
           Insert here an explanation of what the debate is and the underlying narrative, summarised in 20 words or less.\n\n
            
-          Insert here an explanation of how important the debate is, why the debate is important, and any real-world events that may have triggered the debate that are inferrable from the debate content.\n\n
+          Insert here an explanation of Explanation of why the debate is important, mentioning any real-world events, tech advancements, or market trends that may have triggered it.\n\n
           
-          Insert here a summary of both sides of the argument including any notable participant's names:\n\n
+          Insert here a detailed breakdown of both sides of the argument, including key figures, positions, and relevant quotes, including any notable participant's names. Make this 100-200 words and include appropriate quotes from notable users where appropriate.\n\n
 
           Insert here a score of how bearish to bullish the sentiment is on the ticker discussed on a scale from 1 (bearish) to 100 (bullish). Format this line as "Ticker" "Score/100"\n\n
 
@@ -358,7 +372,6 @@ for debate in debate_summaries:
           """
         )
     }
-
     # Create the completion request inside the loop
     completion = client.chat.completions.create(
         model="gpt-4o-mini",  # Ensure the correct model name

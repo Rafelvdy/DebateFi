@@ -12,6 +12,7 @@ const App: React.FC = () => {
   const [sortBy, setSortBy] = useState<'dateDesc' | 'dateAsc' | 'sentiment'>('dateDesc');
   const [sentimentRange, setSentimentRange] = useState(100);
   const [dateDirection, setDateDirection] = useState<'desc' | 'asc'>('desc');
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const generateAndFetchDebates = async () => {
@@ -99,12 +100,36 @@ const App: React.FC = () => {
                   />
                   <button 
                     className="generate-button"
-                    onClick={async () => {/* existing onClick code */}}
+                    onClick={async () => {
+                      try {
+                        setIsLoading(true);
+                        await fetch('http://localhost:3001/api/generate', {
+                          method: 'POST'
+                        });
+                        const response = await fetch('http://localhost:3001/api/debates');
+                        const jsonData = await response.json();
+                        const debateArray = Object.values(jsonData.data).map((item: any) => ({
+                          id: Math.random().toString(36).substr(2, 9),
+                          ...item.data
+                        }));
+                        setDebates(debateArray);
+                      } catch (error) {
+                        console.error('Error generating debates:', error);
+                      } finally {
+                        setIsLoading(false);
+                      }
+                    }}
                   >
-                    Find more tweets for this hour!
+                    Find More Tweets From This Hour!
                   </button>
                 </div>
               </div>
+
+              {isLoading && (
+                <div className="loading-bar-container">
+                  <div className="loading-bar"></div>
+                </div>
+              )}
 
               <div className="events-list">
                 {getFilteredAndSortedDebates().length === 0 ? (

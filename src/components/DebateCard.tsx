@@ -51,9 +51,16 @@ const DebateCard: React.FC<DebateCardProps> = ({ debate, groupedDebates, isGroup
               <div className="debate-header">
                 <div className="ticker-container">
                   <h3 className="ticker">{groupDebate.ticker}</h3>
-                  <span className="sentiment-score">
-                    Sentiment: {groupDebate.rating}
-                  </span>
+                  <div className="sentiment-container">
+                    <span className="sentiment-score">
+                      Sentiment: {groupDebate.rating}
+                    </span>
+                    {parseInt(groupDebate.rating) > 50 ? (
+                      <i className="fas fa-arrow-up" style={{ color: '#00ff88', marginLeft: '8px' }}></i>
+                    ) : (
+                      <i className="fas fa-arrow-down" style={{ color: '#ff4444', marginLeft: '8px' }}></i>
+                    )}
+                  </div>
                 </div>
                 <div className="timestamp">
                   {formatDate(groupDebate.time)}
@@ -115,9 +122,26 @@ const DebateCard: React.FC<DebateCardProps> = ({ debate, groupedDebates, isGroup
                     <span className="ticker-count">+{groupedDebates.length - 1}</span>
                   )}
                 </h3>
-                <span className="sentiment-score">
-                  Sentiment: {debate.rating}
-                </span>
+                <div className="sentiment-container">
+                  <span className="sentiment-score">
+                    {groupedDebates && groupedDebates.length > 1 ? 'Avg. ' : ''}
+                    Sentiment: {groupedDebates && groupedDebates.length > 1 
+                      ? Math.round(groupedDebates.reduce((acc, debate) => acc + parseInt(debate.rating), 0) / groupedDebates.length)
+                      : debate.rating}
+                  </span>
+                  {groupedDebates && groupedDebates.length > 1 
+                    ? (Math.round(groupedDebates.reduce((acc, debate) => acc + parseInt(debate.rating), 0) / groupedDebates.length) > 50 ? (
+                        <i className="fas fa-arrow-up" style={{ color: '#00ff88', marginLeft: '8px' }}></i>
+                      ) : (
+                        <i className="fas fa-arrow-down" style={{ color: '#ff4444', marginLeft: '8px' }}></i>
+                      ))
+                    : (parseInt(debate.rating) > 50 ? (
+                        <i className="fas fa-arrow-up" style={{ color: '#00ff88', marginLeft: '8px' }}></i>
+                      ) : (
+                        <i className="fas fa-arrow-down" style={{ color: '#ff4444', marginLeft: '8px' }}></i>
+                      ))
+                  }
+                </div>
               </div>
               <div className="timestamp">
                 {formatDate(debate.time)}
@@ -178,9 +202,16 @@ const DebateCard: React.FC<DebateCardProps> = ({ debate, groupedDebates, isGroup
       <div className="debate-header">
         <div className="ticker-container">
           <h3 className="ticker">{debate.ticker}</h3>
-          <span className="sentiment-score">
-            Sentiment: {debate.rating}
-          </span>
+          <div className="sentiment-container">
+            <span className="sentiment-score">
+              Sentiment: {debate.rating}
+            </span>
+            {parseInt(debate.rating) > 50 ? (
+              <i className="fas fa-arrow-up" style={{ color: '#00ff88', marginLeft: '8px' }}></i>
+            ) : (
+              <i className="fas fa-arrow-down" style={{ color: '#ff4444', marginLeft: '8px' }}></i>
+            )}
+          </div>
         </div>
         <div className="timestamp">
           {formatDate(debate.time)}

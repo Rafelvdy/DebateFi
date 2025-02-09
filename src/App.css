@@ -627,4 +627,30 @@ body, html {
   background: rgb(22, 24, 28);
   color: rgb(231, 233, 234);
   padding: 8px;
+}
+
+.loading-bar-container {
+  width: 100%;
+  height: 4px;
+  background-color: rgb(32, 35, 39);
+  margin: 10px 0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.loading-bar {
+  width: 30%;
+  height: 100%;
+  background-color: rgb(29, 155, 240);
+  border-radius: 2px;
+  animation: loading 1s infinite linear;
+}
+
+@keyframes loading {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(400%);
+  }
 } 
