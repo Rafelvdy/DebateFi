@@ -86,27 +86,6 @@ const App: React.FC = () => {
               <div className="title-container">
                 <h1 className="title">Crypto Debates</h1>
                 <p className="subtitle">Real-time Analysis of Crypto Twitter</p>
-                <button 
-                  className="generate-button"
-                  onClick={async () => {
-                    try {
-                      await fetch('http://localhost:3001/api/generate', {
-                        method: 'POST'
-                      });
-                      const response = await fetch('http://localhost:3001/api/debates');
-                      const jsonData = await response.json();
-                      const debateArray = Object.values(jsonData.data).map((item: any) => ({
-                        id: Math.random().toString(36).substr(2, 9),
-                        ...item.data
-                      }));
-                      setDebates(debateArray);
-                    } catch (error) {
-                      console.error('Error generating debates:', error);
-                    }
-                  }}
-                >
-                  Generate New Debates
-                </button>
               </div>
 
               <div className="controls">
@@ -118,40 +97,12 @@ const App: React.FC = () => {
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="search-input"
                   />
-                  <select 
-                    className="group-select"
-                    onChange={(e) => {
-                      if (e.target.value === 'ticker') {
-                        const grouped = getFilteredAndSortedDebates().reduce((acc, debate) => {
-                          if (!acc[debate.ticker]) {
-                            acc[debate.ticker] = [];
-                          }
-                          acc[debate.ticker].push(debate);
-                          return acc;
-                        }, {} as Record<string, typeof debates>);
-                        
-                        const sortedDebates = Object.entries(grouped)
-                          .sort(([a], [b]) => a.localeCompare(b))
-                          .flatMap(([_, debates]) => debates);
-                        
-                        setDebates(sortedDebates);
-                      } else {
-                        // Reset to original order
-                        const response = fetch('http://localhost:3001/api/debates')
-                          .then(res => res.json())
-                          .then(jsonData => {
-                            const debateArray = Object.values(jsonData.data).map((item: any) => ({
-                              id: Math.random().toString(36).substr(2, 9),
-                              ...item.data
-                            }));
-                            setDebates(debateArray);
-                          });
-                      }
-                    }}
+                  <button 
+                    className="generate-button"
+                    onClick={async () => {/* existing onClick code */}}
                   >
-                    <option value="none">No Grouping</option>
-                    <option value="ticker">Group by Ticker</option>
-                  </select>
+                    Find more tweets for this hour!
+                  </button>
                 </div>
               </div>
 

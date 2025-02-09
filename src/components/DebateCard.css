@@ -1,6 +1,7 @@
 .debate-card {
-  background: white;
-  border-radius: 12px;
+  background: rgb(22, 24, 28);
+  border: 1px solid rgb(47, 51, 54);
+  border-radius: 16px;
   padding: 20px;
   margin: 16px 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -8,6 +9,7 @@
 }
 
 .debate-card:hover {
+  background: rgb(30, 32, 36);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
@@ -28,19 +30,19 @@
 .ticker {
   font-size: 1.5rem;
   margin: 0;
-  color: #1a1a1a;
+  color: rgb(231, 233, 234);
 }
 
 .sentiment-score {
-  background: #f0f2f5;
+  background: rgb(32, 35, 39);
   padding: 4px 8px;
   border-radius: 6px;
   font-size: 0.9rem;
-  color: #666;
+  color: rgb(139, 152, 165);
 }
 
 .timestamp {
-  color: #666;
+  color: rgb(139, 152, 165);
   font-size: 0.9rem;
 }
 
@@ -55,13 +57,13 @@
 }
 
 .debate-content h4 {
-  color: #1a1a1a;
+  color: rgb(231, 233, 234);
   margin-bottom: 8px;
   font-size: 1.1rem;
 }
 
 .debate-content p {
-  color: #4a4a4a;
+  color: rgb(231, 233, 234);
   line-height: 1.5;
   margin: 0;
 }
@@ -84,7 +86,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  color: #666;
+  color: rgb(139, 152, 165);
   font-size: 0.9rem;
 }
 
@@ -93,7 +95,7 @@
 }
 
 .view-tweet-btn {
-  background: #1da1f2;
+  background: rgb(29, 155, 240);
   color: white;
   padding: 8px 16px;
   border-radius: 20px;
@@ -103,7 +105,7 @@
 }
 
 .view-tweet-btn:hover {
-  background: #1991da;
+  background: rgb(26, 140, 216);
 }
 
 @media (max-width: 768px) {

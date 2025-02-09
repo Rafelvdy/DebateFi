@@ -64,7 +64,7 @@ body, html {
 .subtitle {
   font-family: 'Orbitron', sans-serif;
   font-size: 1.2rem;
-  color: #00cc6e;
+  color: #00ff88;
   text-transform: uppercase;
   letter-spacing: 3px;
   margin-top: 1rem;
@@ -306,26 +306,25 @@ body, html {
   flex: 1;
 }
 
-.search-bar input {
-  width: 100%;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  font-size: 16px;
-  transition: all 0.3s ease;
-  height: 42px;
+.search-input {
+  background: rgb(32, 35, 39);
+  border: 1px solid rgb(32, 35, 39);
+  border-radius: 20px;
+  color: rgb(231, 233, 234);
+  padding: 12px 20px;
+  font-size: 15px;
+  width: 300px;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
-.search-bar input:focus {
+.search-input:focus {
+  background: rgb(22, 24, 28);
+  border-color: rgb(29, 155, 240);
   outline: none;
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 0 0 2px rgba(100, 200, 255, 0.3);
 }
 
-.search-bar input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
+.search-input::placeholder {
+  color: rgb(139, 152, 165);
 }
 
 .sort-controls {
@@ -582,40 +581,50 @@ body, html {
 }
 
 .generate-button {
-  padding: 10px 20px;
-  background-color: #4CAF50;
+  background: rgb(29, 155, 240);
   color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
   border: none;
-  border-radius: 4px;
+  font-size: 0.9rem;
   cursor: pointer;
-  font-size: 16px;
-  margin-bottom: 20px;
+  transition: background-color 0.2s ease;
+  margin-left: 20px;
+}
+
+.generate-button:hover {
+  background: rgb(26, 140, 216);
 }
 
 .generate-button:disabled {
-  background-color: #cccccc;
+  background: rgb(83, 100, 113);
   cursor: not-allowed;
 }
 
-.generate-button:hover:not(:disabled) {
-  background-color: #45a049;
-}
-
 .group-select {
-  padding: 8px 12px;
-  border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.05);
-  color: white;
+  background: rgb(32, 35, 39);
+  border: 1px solid rgb(32, 35, 39);
+  border-radius: 20px;
+  color: rgb(231, 233, 234);
+  padding: 8px 16px;
+  font-size: 15px;
   margin-left: 10px;
   cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .group-select:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgb(22, 24, 28);
+  border-color: rgb(47, 51, 54);
+}
+
+.group-select:focus {
+  outline: none;
+  border-color: rgb(29, 155, 240);
 }
 
 .group-select option {
-  background: #2d2d2d;
-  color: white;
+  background: rgb(22, 24, 28);
+  color: rgb(231, 233, 234);
+  padding: 8px;
 } 
