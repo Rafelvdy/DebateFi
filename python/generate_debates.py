@@ -426,11 +426,34 @@ for index, row in df_summaries.iterrows():
         },
     }
 
-# Convert to JSON
-json_output = json.dumps(output_dict, indent=4)
+# Before saving the new JSON data, load existing data and check for duplicates
+try:
+    with open("public/api/debates.json", "r", encoding="utf-8") as existing_file:
+        existing_data = json.load(existing_file)
+        existing_summaries = {item['data']['summary'] for item in existing_data['data'].values()}
+except (FileNotFoundError, json.JSONDecodeError):
+    existing_data = {"data": {}}
+    existing_summaries = set()
 
-# Print JSON output
-print(json_output)
+# Filter out duplicates from new data
+filtered_output_dict = {
+    k: v for k, v in output_dict.items() 
+    if v['data']['summary'] not in existing_summaries
+}
+
+# Merge with existing data if there are new entries
+if filtered_output_dict:
+    next_index = len(existing_data['data'])
+    for k, v in filtered_output_dict.items():
+        existing_data['data'][str(next_index)] = v
+        next_index += 1
+
+    # Save merged data
+    with open("public/api/debates.json", "w", encoding="utf-8") as json_file:
+        json.dump(existing_data, json_file, indent=4, ensure_ascii=False)
+    print("New debates added to existing data")
+else:
+    print("No new unique debates to add")
 
 # Define the file path where you want to save the JSON data
 output_file_path = "output.json"
