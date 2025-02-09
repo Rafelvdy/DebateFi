@@ -5,26 +5,27 @@ import WordCloudPage from './pages/WordCloudPage';
 import './App.css';
 
 interface Debate {
-  id: number;
-  description: string;
-  importance: string;
-  arguments: {
-    sideA: string;
-    sideB: string;
-  };
-  consensus: number;
+  ticker: string;
+  summary: string;
+  reason: string;
+  analysis: string;
+  rating: string;
 }
 
 const App: React.FC = () => {
   const [debates, setDebates] = useState<Debate[]>([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [sortBy, setSortBy] = useState<'dateDesc' | 'dateAsc' | 'sentiment'>('dateDesc');
+  const [sentimentRange, setSentimentRange] = useState(100);
+  const [dateDirection, setDateDirection] = useState<'desc' | 'asc'>('desc');
 
   useEffect(() => {
     const fetchDebates = async () => {
       try {
-        const response = await fetch('/api/debates');  // adjust URL to match your API endpoint
+        const response = await fetch('/api/debates');
         if (!response.ok) throw new Error('Failed to fetch debates');
         const data = await response.json();
-        setDebates(data.debates);
+        setDebates(data.prompt_num);
       } catch (error) {
         console.error('Error fetching debates:', error);
       }
@@ -33,29 +34,12 @@ const App: React.FC = () => {
     fetchDebates();
   }, []);
 
-  const demoDebates = [
-    {
-      id: 1,
-      description: "Description of the debate...",
-      importance: "Why this debate matters...",
-      arguments: {
-        sideA: "First perspective...",
-        sideB: "Second perspective..."
-      },
-      consensus: 0.75
-    }
-  ];
-
   const getSentimentColor = (sentiment: number) => {
     const red = Math.round(255 * (1 - sentiment));
     const green = Math.round(255 * sentiment);
     return `rgba(${red}, ${green}, 0, 0.8)`;
   };
 
-  const [searchTerm, setSearchTerm] = useState('');
-  const [sortBy, setSortBy] = useState<'dateDesc' | 'dateAsc' | 'sentiment'>('dateDesc');
-  const [dateDirection, setDateDirection] = useState<'desc' | 'asc'>('desc');
-  const [sentimentRange, setSentimentRange] = useState<number>(0);
   const [rotation, setRotation] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const numSquares = 15;
@@ -129,19 +113,19 @@ const App: React.FC = () => {
   };
 
   const getFilteredAndSortedDebates = () => {
-    return demoDebates
+    return debates
       .filter(debate => {
-        const matchesSearch = debate.description.toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesSearch = debate.summary.toLowerCase().includes(searchTerm.toLowerCase());
         
         if (sortBy === 'sentiment') {
-          return matchesSearch && (debate.consensus * 100 <= sentimentRange);
+          return matchesSearch && (parseFloat(debate.rating) <= sentimentRange);
         }
         return matchesSearch;
       })
       .sort((a, b) => {
         switch (sortBy) {
           case 'sentiment':
-            return b.consensus - a.consensus;
+            return parseFloat(b.rating) - parseFloat(a.rating);
           default:
             return 0;
         }
@@ -225,43 +209,34 @@ const App: React.FC = () => {
 
               <div className="events-list">
                 {getFilteredAndSortedDebates().map((debate) => (
-                  <div key={debate.id} className="event-card">
+                  <div key={debate.ticker} className="event-card">
                     <div className="content-section">
                       <h3>Overview</h3>
-                      <p className="description">{debate.description}</p>
+                      <p className="description">{debate.summary}</p>
                     </div>
 
                     <div className="content-section">
                       <h3>Why This Matters</h3>
-                      <p className="importance">{debate.importance}</p>
+                      <p className="importance">{debate.reason}</p>
                     </div>
 
                     <div className="content-section">
-                      <h3>Key Arguments</h3>
-                      <div className="arguments-container">
-                        <div className="argument">
-                          <h4>Position A</h4>
-                          <p>{debate.arguments.sideA}</p>
-                        </div>
-                        <div className="argument">
-                          <h4>Position B</h4>
-                          <p>{debate.arguments.sideB}</p>
-                        </div>
-                      </div>
+                      <h3>Analysis</h3>
+                      <p className="analysis">{debate.analysis}</p>
                     </div>
 
                     <div className="sentiment-container">
-                      <span>Community Consensus:</span>
+                      <span>Rating:</span>
                       <div className="sentiment-bar">
                         <div 
                           className="sentiment-fill"
                           style={{ 
-                            width: `${debate.consensus * 100}%`,
-                            backgroundColor: getSentimentColor(debate.consensus)
+                            width: `${parseFloat(debate.rating)}%`,
+                            backgroundColor: getSentimentColor(parseFloat(debate.rating) / 100)
                           }}
                         />
                         <span className="sentiment-value">
-                          {(debate.consensus * 100).toFixed(0)}%
+                          {debate.rating}
                         </span>
                       </div>
                     </div>
@@ -279,8 +254,8 @@ const App: React.FC = () => {
               </svg>
             </Link>
             <WordCloudPage 
-              debates={demoDebates} 
-              sortBy={sortBy} 
+              debates={debates}
+              sortBy={sortBy}
               sentimentRange={sentimentRange}
             />
           </>

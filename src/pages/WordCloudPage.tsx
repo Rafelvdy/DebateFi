@@ -3,14 +3,11 @@ import * as d3 from 'd3';
 import './WordCloudPage.css';
 
 interface Debate {
-  id: number;
-  description: string;
-  importance: string;
-  arguments: {
-    sideA: string;
-    sideB: string;
-  };
-  consensus: number;
+  ticker: string;
+  summary: string;
+  reason: string;
+  analysis: string;
+  rating: string;
 }
 
 interface WordCloudProps {
@@ -39,18 +36,18 @@ const WordCloudPage: React.FC<WordCloudProps> = ({ debates, sortBy, sentimentRan
     
     if (sortBy === 'sentiment') {
       filteredDebates = filteredDebates
-        .sort((a, b) => b.consensus - a.consensus);
+        .sort((a, b) => parseFloat(b.rating) - parseFloat(a.rating));
       
       if (sentimentRange > 0) {
         filteredDebates = filteredDebates
-          .filter(debate => debate.consensus * 100 <= sentimentRange);
+          .filter(debate => parseFloat(debate.rating) <= sentimentRange);
       }
     }
     
     return filteredDebates.map(debate => ({
-      text: debate.description,
-      size: 14 + (debate.consensus * 20),
-      sentiment: debate.consensus
+      text: debate.summary,
+      size: 14 + (parseFloat(debate.rating) / 5),
+      sentiment: parseFloat(debate.rating) / 100
     })) as Word[];
   }, [debates, sortBy, sentimentRange]);
 
