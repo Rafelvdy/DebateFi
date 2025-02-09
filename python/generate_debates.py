@@ -4,10 +4,7 @@ import openai
 from datetime import datetime, timedelta
 import json
 import re
-import os
 
-print("Starting script...")
-print(f"Current working directory: {os.getcwd()}")
 
 start_date = '2025-02-07_22:00:01_UTC'
 # Convert start_date string to datetime object
@@ -36,16 +33,18 @@ crypto_tickers = top_100_cryptos = [
     "Bitcoin", "BTC",
     "Ethereum", "ETH",
     "Tether", "USDT",
-    "XRP", "XRP",
+    "XRP",
     "Solana", "SOL",
-    "BNB", "BNB",
+    "BNB",
     "USD Coin", "USDC",
     "Cardano", "ADA",
     "TRON", "TRX",
     "Chainlink", "LINK",
     "Stellar", "XLM",
     "Avalanche", "AVAX",
-    "Sui", "SUI",
+    "Sui"
+    ]
+'''
     "Shiba Inu", "SHIB",
     "Litecoin", "LTC",
     "Polkadot", "DOT",
@@ -67,7 +66,7 @@ crypto_tickers = top_100_cryptos = [
     "Arbitrum", "ARB",
     "VeChain", "VET",
     "NEAR Protocol", "NEAR",
-    "Aave", "AAVE",
+    "AAVE",
     "Algorand", "ALGO",
     "Maker", "MKR",
     "Render", "RNDR",
@@ -76,7 +75,7 @@ crypto_tickers = top_100_cryptos = [
     "Fantom", "FTM",
     "THORChain", "RUNE",
     "Stacks", "STX",
-    "Flow", "FLOW",
+    "FLOW",
     "Quant", "QNT",
     "MultiversX", "EGLD",
     "Immutable", "IMX",
@@ -92,16 +91,16 @@ crypto_tickers = top_100_cryptos = [
     "Curve DAO", "CRV",
     "Synthetix", "SNX",
     "Frax Share", "FXS",
-    "EOS", "EOS",
-    "Neo", "NEO",
+    "EOS",
+    "NEO",
     "Zilliqa", "ZIL",
     "IOTA", "MIOTA",
     "Helium", "HNT",
-    "Gala", "GALA",
-    "Dash", "DASH",
-    "Celo", "CELO",
+    "GALA",
+    "DASH",
+    "CELO",
     "Harmony", "ONE",
-    "Waves", "WAVES",
+    "WAVES",
     "Loopring", "LRC",
     "Enjin Coin", "ENJ",
     "Holo", "HOT",
@@ -109,24 +108,23 @@ crypto_tickers = top_100_cryptos = [
     "Siacoin", "SC",
     "BitTorrent", "BTT",
     "Lisk", "LSK",
-    "Audius", "AUDIO",
+    "AUDIO",
     "DigiByte", "DGB",
     "Nano", "XNO",
     "Ontology", "ONT",
     "ICON", "ICX",
     "SafePal", "SFP",
     "Livepeer", "LPT",
-    "COTI", "COTI",
-    "Storj", "STORJ",
-    "Ark", "ARK",
+    "COTI",
+    "STORJ",
+    "ARK",
     "Numeraire", "NMR",
     "Verge", "XVG",
     "Radicle", "RAD",
     "SuperRare", "RARE",
 ]
+'''
 
-
-print("Loading API keys...")
 # OpenAI API Key
 client = openai.OpenAI(api_key="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")
 # Datura API Key
@@ -161,12 +159,11 @@ def is_bot(user):
 # List to store all tweets
 all_tweets = []
 
-print("Starting to fetch tweets...")
 for end_date in formatted_timestamps[1:]:
     print(f'Searching for tweets {start_date} to {end_date}')
     # Loop through each crypto ticker
     for ticker in crypto_tickers:
-        print(f"Fetching tweets for {ticker}...")
+        #print(f"Fetching tweets for {ticker}...")
         # Define the search parameters
         payload = {
             "query": f"(${ticker} OR {ticker} OR {ticker.lower()} OR ${ticker.lower()})",# min_replies:{min_replies} min_faves:{min_likes} min_retweets:{min_retweets} lang:en verified: True since:{start_date} until:{end_date}",
@@ -211,7 +208,6 @@ for end_date in formatted_timestamps[1:]:
             
     start_date = end_date
 
-print(f"Found {len(all_tweets)} total tweets")
 
 
 # Convert to DataFrame
@@ -277,6 +273,15 @@ def generate_debate_summaries(df_2):
         likes = row["likes"]
         retweets = row["retweets"]
         replies_count = row["replies"]
+        url = row["url"]
+        date = row["created_at"]
+        ticker = row["ticker"]
+        # Original datetime string
+        date_str = "Fri Feb 07 22:02:48 +0000 2025"
+        # Convert to datetime object (ignoring timezone offset)
+        strip_date = datetime.strptime(date_str, "%a %b %d %H:%M:%S %z %Y")
+        # Convert back to a cleaner string format
+        clean_date = strip_date.strftime("%Y-%m-%d %H:%M:%S")
 
         replies_list = row.get("Replies", [])
 
@@ -293,6 +298,9 @@ def generate_debate_summaries(df_2):
             f"Here is the tweet that sparked debate: \"{tweet_text}\" by {user} "
             f"(Followers: {followers}). It received {likes} likes, {retweets} retweets, "
             f"and {replies_count} replies.\n\n"
+            f"The link to the original tweet is {url}.\n"
+            f"The tweet was about the ticker {ticker}.\n"
+            f"The original tweet was made at the at datetime: {clean_date}.\n"
             f"This tweet has a total of {total_reply_count} replies, "
             f"which accumulated {total_reply_likes} likes and {total_reply_retweets} retweets in total.\n\n"
             f"Here are the notable replies:\n" +
@@ -340,7 +348,13 @@ for debate in debate_summaries:
           
           Insert here a summary of both sides of the argument including any notable participant's names:\n\n
 
-          Insert here a score of how bearish to bullish the sentiment is on the ticker discussed on a scale from 1 (bearish) to 100 (bullish). Format this line as "Ticker" "Score/100"\n\n\n
+          Insert here a score of how bearish to bullish the sentiment is on the ticker discussed on a scale from 1 (bearish) to 100 (bullish). Format this line as "Ticker" "Score/100"\n\n
+
+          Insert here the total engagement on the post. Format this line as "Likes: (number of likes), Retweets: (number of retweets), Replies: (number of replies)"\n\n
+
+          Insert here the url link to the original tweet\n\n
+
+          Insert here the datetime that the original tweet was made at in the format "Time: (Datetime)"\n\n\n
           """
         )
     }
@@ -359,28 +373,42 @@ for debate in debate_summaries:
     new_row = pd.DataFrame({'Summary': [message_content]})
     df_summaries = pd.concat([df_summaries, new_row], ignore_index=True)
 
-print(f"Processed {len(df_summaries)} summaries")
-
 
 ## CONVERT TO JSON
 
 
 print('Output to json')
 # Function to extract ticker and rating
-def extract_ticker_and_rating(summary):
+def extract_data(summary):
     ticker_match = re.search(r'\$(\w+)|Ticker: (\w+)', summary)  # Find ticker
     rating_match = re.search(r'(\d+)/100', summary)  # Find rating
+    likes_match = re.search(r'Likes: (\d+)', summary)  # Find Likes
+    retweets_match = re.search(r'Retweets: (\d+)', summary)  # Find Retweets
+    replies_match = re.search(r'Replies: (\d+)', summary)  # Find Replies
+    url_match = re.search(r'(https://x\.com/\S+)', summary)  # Find URL
+    time_match = re.search(r'Time: (.+)$', summary, re.MULTILINE)  # Find timestamp
 
     ticker = ticker_match.group(1) if ticker_match else "N/A"
     rating = rating_match.group(1) if rating_match else "N/A"
-    
-    return ticker, rating
+    likes = int(likes_match.group(1)) if likes_match else 0
+    retweets = int(retweets_match.group(1)) if retweets_match else 0
+    replies = int(replies_match.group(1)) if replies_match else 0
+    url = url_match.group(1) if url_match else "N/A"
+    time_str = time_match.group(1) if time_match else "N/A"
+
+    # Convert time to a cleaner format if it exists
+    try:
+        time_clean = datetime.strptime(time_str, "%Y-%m-%d %H:%M:%S").strftime("%Y-%m-%d %H:%M:%S")
+    except ValueError:
+        time_clean = "N/A"
+
+    return ticker, rating, likes, retweets, replies, url, time_clean
 
 # Transform DataFrame into the required format
 output_dict = {}
 
 for index, row in df_summaries.iterrows():
-    ticker, rating = extract_ticker_and_rating(row["Summary"])
+    ticker, rating, likes, retweets, replies, url, time_clean = extract_data(row["Summary"])
     parts = row["Summary"].split("\n\n", maxsplit=3)  # Split into parts
     
     output_dict[index] = {
@@ -390,6 +418,11 @@ for index, row in df_summaries.iterrows():
             "reason": parts[1] if len(parts) > 1 else "",
             "analysis": parts[2] if len(parts) > 2 else "",
             "rating": f"{rating}/100" if rating != "N/A" else "N/A",
+            "likes": likes,
+            "retweets": retweets,
+            "replies": replies,
+            "url": url,
+            "time": time_clean,
         },
     }
 
@@ -400,19 +433,10 @@ json_output = json.dumps(output_dict, indent=4)
 print(json_output)
 
 # Define the file path where you want to save the JSON data
-output_file_path = "../public/api/debates.json"  # Use relative path to save in correct location
+output_file_path = "output.json"
 
-# Before saving the JSON file
-print(f"Attempting to save to: {os.path.abspath(output_file_path)}")
-try:
-    # Create directories if they don't exist
-    os.makedirs(os.path.dirname(os.path.abspath(output_file_path)), exist_ok=True)
-    
-    with open(output_file_path, "w", encoding="utf-8") as json_file:
-        json.dump(output_dict, json_file, indent=4, ensure_ascii=False)
-    print(f"Successfully saved JSON with {len(output_dict)} entries")
-    print(f"File exists after save: {os.path.exists(output_file_path)}")
-except Exception as e:
-    print(f"Error saving JSON: {str(e)}")
+# Save JSON to a file
+with open(output_file_path, "w", encoding="utf-8") as json_file:
+    json.dump(output_dict, json_file, indent=4, ensure_ascii=False)
 
-input("Press Enter to exit...")
+print(f"JSON data successfully saved to {output_file_path}")
