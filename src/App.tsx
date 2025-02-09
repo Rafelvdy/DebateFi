@@ -118,6 +118,40 @@ const App: React.FC = () => {
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="search-input"
                   />
+                  <select 
+                    className="group-select"
+                    onChange={(e) => {
+                      if (e.target.value === 'ticker') {
+                        const grouped = getFilteredAndSortedDebates().reduce((acc, debate) => {
+                          if (!acc[debate.ticker]) {
+                            acc[debate.ticker] = [];
+                          }
+                          acc[debate.ticker].push(debate);
+                          return acc;
+                        }, {} as Record<string, typeof debates>);
+                        
+                        const sortedDebates = Object.entries(grouped)
+                          .sort(([a], [b]) => a.localeCompare(b))
+                          .flatMap(([_, debates]) => debates);
+                        
+                        setDebates(sortedDebates);
+                      } else {
+                        // Reset to original order
+                        const response = fetch('http://localhost:3001/api/debates')
+                          .then(res => res.json())
+                          .then(jsonData => {
+                            const debateArray = Object.values(jsonData.data).map((item: any) => ({
+                              id: Math.random().toString(36).substr(2, 9),
+                              ...item.data
+                            }));
+                            setDebates(debateArray);
+                          });
+                      }
+                    }}
+                  >
+                    <option value="none">No Grouping</option>
+                    <option value="ticker">Group by Ticker</option>
+                  </select>
                 </div>
               </div>
 
@@ -125,8 +159,21 @@ const App: React.FC = () => {
                 {getFilteredAndSortedDebates().length === 0 ? (
                   <div className="no-debates">No debates found</div>
                 ) : (
-                  getFilteredAndSortedDebates().map((debate) => (
-                    <DebateCard key={debate.id} debate={debate} />
+                  Object.entries(
+                    getFilteredAndSortedDebates().reduce((acc, debate) => {
+                      if (!acc[debate.ticker]) {
+                        acc[debate.ticker] = [];
+                      }
+                      acc[debate.ticker].push(debate);
+                      return acc;
+                    }, {} as Record<string, Debate[]>)
+                  ).map(([ticker, groupedDebates]) => (
+                    <DebateCard
+                      key={ticker}
+                      debate={groupedDebates[0]}
+                      groupedDebates={groupedDebates}
+                      isGrouped={true}
+                    />
                   ))
                 )}
               </div>
