@@ -4,6 +4,10 @@ import openai
 from datetime import datetime, timedelta
 import json
 import re
+import os
+
+openaikey = os.getenv("OPENAI_API_KEY")  # Fetch from env variables
+twitterkey = os.getenv("TWITTER_API_KEY")  # Fetch from env variables
 
 # Get current time and round down to nearest hour
 current_time = datetime.now()
