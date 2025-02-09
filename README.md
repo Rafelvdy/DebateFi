@@ -1,4 +1,4 @@
-# **DebateFi - Crypto Twitter Debate Analyzer**
+# **DebateFi - Crypto Twitter Debate Analyser**
 
 **DebateFi** is an intelligent system designed to identify, analyze, and summarize debates happening on **Crypto Twitter**. This tool extracts key discussions, evaluates sentiment, and identifies real-world events influencing the conversation. It integrates **OpenAI API** for generating insights and **Twitter API** for fetching debates.
 
