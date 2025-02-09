@@ -37,71 +37,82 @@ app.get('/api/debates', (req, res) => {
   }
 });
 
-app.post('/api/generate', (req, res) => {
-  console.log('\n--- Starting Debate Generation ---');
-  const pythonScript = path.join(__dirname, 'python', 'generate_debates.py');
-  console.log('Python script path:', pythonScript);
+let isGenerating = false;
 
-  // Check if the Python script exists
-  if (!fs.existsSync(pythonScript)) {
-    console.error('Python script not found at:', pythonScript);
-    return res.status(500).json({ error: 'Python script not found' });
+app.post('/api/generate', async (req, res) => {
+  if (isGenerating) {
+    return res.status(429).json({ message: 'Generation already in progress' });
   }
 
-  const pythonProcess = spawn('python', [pythonScript]);
-  let scriptOutput = '';
-  let scriptError = '';
+  try {
+    isGenerating = true;
+    console.log('\n--- Starting Debate Generation ---');
+    const pythonScript = path.join(__dirname, 'python', 'generate_debates.py');
+    console.log('Python script path:', pythonScript);
 
-  pythonProcess.stdout.on('data', (data) => {
-    console.log('Python output:', data.toString());
-    scriptOutput += data.toString();
-  });
-
-  pythonProcess.stderr.on('data', (data) => {
-    console.error('Python error:', data.toString());
-    scriptError += data.toString();
-  });
-
-  pythonProcess.on('close', (code) => {
-    console.log('Python process exited with code:', code);
-    
-    if (code !== 0) {
-      console.error('Python script failed:', scriptError);
-      return res.status(500).json({ 
-        error: 'Python script failed', 
-        details: scriptError 
-      });
+    // Check if the Python script exists
+    if (!fs.existsSync(pythonScript)) {
+      console.error('Python script not found at:', pythonScript);
+      return res.status(500).json({ error: 'Python script not found' });
     }
 
-    // Try to read the generated data
-    const jsonPath = path.join(__dirname, 'public', 'api', 'debates.json');
-    try {
-      console.log('Reading generated data from:', jsonPath);
-      const jsonData = fs.readFileSync(jsonPath, 'utf8');
-      console.log('Successfully read generated data');
-      const parsedData = JSON.parse(jsonData);
+    const pythonProcess = spawn('python', [pythonScript]);
+    let scriptOutput = '';
+    let scriptError = '';
+
+    pythonProcess.stdout.on('data', (data) => {
+      console.log('Python output:', data.toString());
+      scriptOutput += data.toString();
+    });
+
+    pythonProcess.stderr.on('data', (data) => {
+      console.error('Python error:', data.toString());
+      scriptError += data.toString();
+    });
+
+    pythonProcess.on('close', (code) => {
+      console.log('Python process exited with code:', code);
       
-      res.json({ 
-        message: 'Data generated successfully',
-        output: scriptOutput,
-        data: parsedData
-      });
-    } catch (error) {
-      console.error('Error reading generated data:', error);
+      if (code !== 0) {
+        console.error('Python script failed:', scriptError);
+        return res.status(500).json({ 
+          error: 'Python script failed', 
+          details: scriptError 
+        });
+      }
+
+      // Try to read the generated data
+      const jsonPath = path.join(__dirname, 'public', 'api', 'debates.json');
+      try {
+        console.log('Reading generated data from:', jsonPath);
+        const jsonData = fs.readFileSync(jsonPath, 'utf8');
+        console.log('Successfully read generated data');
+        const parsedData = JSON.parse(jsonData);
+        
+        res.json({ 
+          message: 'Data generated successfully',
+          output: scriptOutput,
+          data: parsedData
+        });
+      } catch (error) {
+        console.error('Error reading generated data:', error);
+        res.status(500).json({ 
+          error: 'Failed to read generated data',
+          details: error.message
+        });
+      }
+    });
+
+    pythonProcess.on('error', (error) => {
+      console.error('Failed to start Python process:', error);
       res.status(500).json({ 
-        error: 'Failed to read generated data',
+        error: 'Failed to start Python process',
         details: error.message
       });
-    }
-  });
-
-  pythonProcess.on('error', (error) => {
-    console.error('Failed to start Python process:', error);
-    res.status(500).json({ 
-      error: 'Failed to start Python process',
-      details: error.message
     });
-  });
+  } finally {
+    isGenerating = false;
+  }
 });
 
 const PORT = 3001;

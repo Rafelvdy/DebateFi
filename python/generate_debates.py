@@ -7,13 +7,16 @@ import re
 
 # Get current time and round down to nearest hour
 current_time = datetime.now()
+'''
 start_date = current_time.replace(minute=0, second=0, microsecond=0).strftime('%Y-%m-%d_%H:%M:%S_UTC')
 
 # Add 1 hour to get the end date
 start_datetime = datetime.strptime(start_date, '%Y-%m-%d_%H:%M:%S_%Z')
 end_datetime = start_datetime + timedelta(hours=1)
 end_date = end_datetime.strftime('%Y-%m-%d_%H:%M:%S_UTC')
-
+'''
+start_date = "2025-02-08_18:00:00_UTC"
+end_date = "2025-02-09_04:00:00_UTC"
 # Generate hourly timestamps
 hourly_timestamps = pd.date_range(start=start_date.replace("_", " "), 
                                   end=end_date.replace("_", " "), 
@@ -42,9 +45,7 @@ crypto_tickers = top_100_cryptos = [
     "Chainlink", "LINK",
     "Stellar", "XLM",
     "Avalanche", "AVAX",
-    "Sui"
-    ]
-'''
+    "Sui",
     "Shiba Inu", "SHIB",
     "Litecoin", "LTC",
     "Polkadot", "DOT",
@@ -72,7 +73,8 @@ crypto_tickers = top_100_cryptos = [
     "Render", "RNDR",
     "Optimism", "OP",
     "The Graph", "GRT",
-    "Fantom", "FTM",
+    "Fantom", "FTM"]
+'''
     "THORChain", "RUNE",
     "Stacks", "STX",
     "FLOW",
@@ -160,7 +162,7 @@ def is_bot(user):
 all_tweets = []
 
 for end_date in formatted_timestamps[1:]:
-    print(f'Searching for tweets {start_datetime} to {end_datetime}')
+    #print(f'Searching for tweets {start_datetime} to {end_datetime}')
     # Loop through each crypto ticker
     for ticker in crypto_tickers:
         #print(f"Fetching tweets for {ticker}...")

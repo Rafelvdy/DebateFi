@@ -52,6 +52,9 @@ const App: React.FC = () => {
     
     let filtered = [...debates];
 
+    // Filter out debates with N/A tickers
+    filtered = filtered.filter(debate => debate.ticker !== "N/A");
+
     // Apply search filter
     if (searchTerm) {
       filtered = filtered.filter(debate =>

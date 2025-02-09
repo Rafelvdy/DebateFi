@@ -59,6 +59,9 @@ body, html {
   position: relative;
   margin-bottom: 3rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .subtitle {
@@ -653,4 +656,21 @@ body, html {
   100% {
     transform: translateX(400%);
   }
+}
+
+/* Remove or comment out the .torus-logo class */
+/* .torus-logo {
+  display: block;
+  width: 120px;
+  height: auto;
+  margin: 0 auto 1.5rem;
+} */
+
+.title-container {
+  position: relative;
+  margin-bottom: 3rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 } 
