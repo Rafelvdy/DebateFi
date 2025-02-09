@@ -69,8 +69,25 @@ const App: React.FC = () => {
       return !isNaN(rating) && rating <= sentimentRange;
     });
 
+    // Define priority order for pinned tickers
+    const pinnedOrder = ["ETH", "SOL", "BNB", "BTC"];
+
     // Apply sorting
     filtered.sort((a, b) => {
+      // Get index of tickers in pinnedOrder (-1 if not found)
+      const aIndex = pinnedOrder.indexOf(a.ticker);
+      const bIndex = pinnedOrder.indexOf(b.ticker);
+      
+      // If both are pinned, sort by pinnedOrder
+      if (aIndex !== -1 && bIndex !== -1) {
+        return aIndex - bIndex;
+      }
+      
+      // If only one is pinned, it goes first
+      if (aIndex !== -1) return -1;
+      if (bIndex !== -1) return 1;
+      
+      // For non-pinned items, apply normal sorting
       if (sortBy === 'sentiment') {
         return parseInt(b.rating) - parseInt(a.rating);
       }
