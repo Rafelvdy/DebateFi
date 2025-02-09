@@ -128,9 +128,9 @@ crypto_tickers = top_100_cryptos = [
 '''
 
 # OpenAI API Key
-client = openai.OpenAI(api_key="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")
+client = openai.OpenAI(api_key=openaikey)
 # Datura API Key
-API_KEY = "dt_$44-mkIw_pnkjUohDIq9jNDWiBsD6nEyPX8QHQ03vbY4"
+API_KEY = twitterkey
 
 
 ## FETCH TWEETS
