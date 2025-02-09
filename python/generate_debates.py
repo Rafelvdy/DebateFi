@@ -302,7 +302,7 @@ def generate_debate_summaries(df_2):
             f"(Followers: {followers}). It received {likes} likes, {retweets} retweets, "
             f"and {replies_count} replies.\n\n"
             f"The link to the original tweet is {url}.\n"
-            f"The tweet was about the ticker {ticker}.\n"
+            f"The tweet was about the crypto token ticker {ticker}.\n"
             f"The original tweet was made at the at datetime: {clean_date}.\n"
             f"This tweet has a total of {total_reply_count} replies, "
             f"which accumulated {total_reply_likes} likes and {total_reply_retweets} retweets in total.\n\n"
@@ -339,6 +339,7 @@ system_message = {
           "You must be clear, concise, direct, and factual. Make your output as information dense as possible.\n"
 
           "**Important Guidelines:**\n"
+          "- When referecing a crypto token ticker, it should always be the ticker symbol with letters onlyand should never contain numbers.\n"
           "- Keep your responses concise but **rich in insights**. Do not add unnecessary fluff.\n"
           "- Focus on **data, metrics, and technological impact** rather than emotions or generic opinions.\n"
           "- Use **quotes from key participants** only when they add value to the analysis.\n"
@@ -364,7 +365,7 @@ for debate in debate_summaries:
           
           Insert here a detailed breakdown of both sides of the argument, including key figures, positions, and relevant quotes, including any notable participant's names. Make this 100-200 words and include appropriate quotes from notable users where appropriate.\n\n
 
-          Insert here a score of how bearish to bullish the sentiment is on the ticker discussed on a scale from 1 (bearish) to 100 (bullish). Format this line as "Ticker" "Score/100"\n\n
+          Insert here a score of how bearish to bullish the sentiment is on the ticker discussed on a scale from 1 (bearish) to 100 (bullish). Format this line as "Crypto Token Ticker" "Score/100"\n\n
 
           Insert here the total engagement on the post. Format this line as "Likes: (number of likes), Retweets: (number of retweets), Replies: (number of replies)"\n\n
 

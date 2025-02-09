@@ -53,6 +53,7 @@ body, html {
   padding: 1rem;
   text-shadow: 0 0 10px rgba(0, 255, 136, 0.5),
                0 0 20px rgba(0, 255, 136, 0.3);
+  animation: float 3s ease-in-out infinite;
 }
 
 .title-container {
@@ -62,6 +63,7 @@ body, html {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 20px;
 }
 
 .subtitle {
@@ -71,6 +73,8 @@ body, html {
   text-transform: uppercase;
   letter-spacing: 3px;
   margin-top: 1rem;
+  animation: float 3s ease-in-out infinite;
+  animation-delay: 0.5s; /* Slight delay for a wave effect */
 }
 
 .date-stamp {
@@ -307,6 +311,9 @@ body, html {
 
 .search-bar {
   flex: 1;
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
 .search-input {
@@ -658,19 +665,33 @@ body, html {
   }
 }
 
-/* Remove or comment out the .torus-logo class */
-/* .torus-logo {
-  display: block;
-  width: 120px;
+.logo {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 180px;
   height: auto;
-  margin: 0 auto 1.5rem;
-} */
+  z-index: 10;
+}
 
-.title-container {
-  position: relative;
-  margin-bottom: 3rem;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.torus-logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 180px;
+  height: auto;
+  z-index: 10;
+  filter: brightness(0) saturate(100%) invert(48%) sepia(95%) saturate(498%) hue-rotate(93deg) brightness(97%) contrast(108%);
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 } 

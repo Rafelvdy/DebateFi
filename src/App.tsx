@@ -8,7 +8,6 @@ import { Debate } from './types/Debate';
 
 const App: React.FC = () => {
   const [debates, setDebates] = useState<Debate[]>([]);
-  const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState<'dateDesc' | 'dateAsc' | 'sentiment'>('dateDesc');
   const [sentimentRange, setSentimentRange] = useState(100);
   const [dateDirection, setDateDirection] = useState<'desc' | 'asc'>('desc');
@@ -55,14 +54,6 @@ const App: React.FC = () => {
     // Filter out debates with N/A tickers
     filtered = filtered.filter(debate => debate.ticker !== "N/A");
 
-    // Apply search filter
-    if (searchTerm) {
-      filtered = filtered.filter(debate =>
-        debate.ticker.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        debate.summary.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    }
-
     // Apply sentiment range filter
     filtered = filtered.filter(debate => {
       const rating = parseInt(debate.rating);
@@ -95,6 +86,9 @@ const App: React.FC = () => {
       return 0;
     });
 
+    // Add console.log to debug
+    console.log('Filtered debates:', filtered);
+
     return filtered;
   };
 
@@ -104,45 +98,46 @@ const App: React.FC = () => {
         <Route path="/" element={
           <div className="main-container">
             <div className="card-container">
+              <img 
+                src="/DebateFi logo PNG.png"
+                alt="DebateFi Logo" 
+                className="logo"
+              />
+              <img 
+                src="/torus logo.png"
+                alt="Torus Logo" 
+                className="torus-logo"
+              />
               <div className="title-container">
                 <h1 className="title">Crypto Debates</h1>
                 <p className="subtitle">Real-time Analysis of Crypto Twitter</p>
               </div>
 
               <div className="controls">
-                <div className="search-filters">
-                  <input
-                    type="text"
-                    placeholder="Search debates..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="search-input"
-                  />
-                  <button 
-                    className="generate-button"
-                    onClick={async () => {
-                      try {
-                        setIsLoading(true);
-                        await fetch('http://localhost:3001/api/generate', {
-                          method: 'POST'
-                        });
-                        const response = await fetch('http://localhost:3001/api/debates');
-                        const jsonData = await response.json();
-                        const debateArray = Object.values(jsonData.data).map((item: any) => ({
-                          id: Math.random().toString(36).substr(2, 9),
-                          ...item.data
-                        }));
-                        setDebates(debateArray);
-                      } catch (error) {
-                        console.error('Error generating debates:', error);
-                      } finally {
-                        setIsLoading(false);
-                      }
-                    }}
-                  >
-                    Find More Tweets From This Hour!
-                  </button>
-                </div>
+                <button 
+                  className="generate-button"
+                  onClick={async () => {
+                    try {
+                      setIsLoading(true);
+                      await fetch('http://localhost:3001/api/generate', {
+                        method: 'POST'
+                      });
+                      const response = await fetch('http://localhost:3001/api/debates');
+                      const jsonData = await response.json();
+                      const debateArray = Object.values(jsonData.data).map((item: any) => ({
+                        id: Math.random().toString(36).substr(2, 9),
+                        ...item.data
+                      }));
+                      setDebates(debateArray);
+                    } catch (error) {
+                      console.error('Error generating debates:', error);
+                    } finally {
+                      setIsLoading(false);
+                    }
+                  }}
+                >
+                  Find More Tweets From This Hour!
+                </button>
               </div>
 
               {isLoading && (
