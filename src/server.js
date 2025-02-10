@@ -3,29 +3,49 @@ const { spawn } = require('child_process');
 const path = require('path');
 const cors = require('cors');
 const fs = require('fs');
+require('dotenv').config();
 
 const app = express();
 
-// Configure CORS to allow requests from your React app
+// Use Render's dynamic PORT (Ensuring it's correctly set)
+const PORT = process.env.PORT || 10000;
+
+// Allowed frontend origins (Add your frontend URL + local development)
+const allowedOrigins = [
+  'https://debatefi-21.onrender.com',  // Deployed frontend
+  'http://localhost:5173'  // Local frontend
+];
+
 app.use(cors({
-  origin: 'http://localhost:5173', // Vite's default port
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST'],
   credentials: true
 }));
 
 app.use(express.json());
 
-// Serve static files from the public directory
+// Serve static API data
 app.use('/api', express.static(path.join(__dirname, 'public', 'api')));
 
-// Test endpoint to verify server is running
+// Test API endpoint
 app.get('/test', (req, res) => {
-  res.json({ message: 'Server is running' });
+  res.json({ message: 'Server is running correctly' });
 });
 
-// Endpoint to get current debates
+// Get existing debates
 app.get('/api/debates', (req, res) => {
   const jsonPath = path.join(__dirname, 'public', 'api', 'debates.json');
+
+  if (!fs.existsSync(jsonPath)) {
+    return res.status(404).json({ error: 'debates.json not found' });
+  }
+
   try {
     console.log('Reading debates from:', jsonPath);
     const jsonData = fs.readFileSync(jsonPath, 'utf8');
@@ -37,6 +57,7 @@ app.get('/api/debates', (req, res) => {
   }
 });
 
+// Debate Generation
 let isGenerating = false;
 
 app.post('/api/generate', async (req, res) => {
@@ -44,82 +65,60 @@ app.post('/api/generate', async (req, res) => {
     return res.status(429).json({ message: 'Generation already in progress' });
   }
 
-  try {
-    isGenerating = true;
-    console.log('\n--- Starting Debate Generation ---');
-    const pythonScript = path.join(__dirname, 'python', 'generate_debates.py');
-    console.log('Python script path:', pythonScript);
+  isGenerating = true;
+  console.log('\n--- Starting Debate Generation ---');
+  const pythonScript = path.join(__dirname, 'python', 'generate_debates.py');
 
-    // Check if the Python script exists
-    if (!fs.existsSync(pythonScript)) {
-      console.error('Python script not found at:', pythonScript);
-      return res.status(500).json({ error: 'Python script not found' });
+  if (!fs.existsSync(pythonScript)) {
+    console.error('Python script not found at:', pythonScript);
+    isGenerating = false;
+    return res.status(500).json({ error: 'Python script not found' });
+  }
+
+  const pythonProcess = spawn('python', [pythonScript]);
+  let scriptOutput = '', scriptError = '';
+
+  pythonProcess.stdout.on('data', (data) => {
+    console.log('Python output:', data.toString());
+    scriptOutput += data.toString();
+  });
+
+  pythonProcess.stderr.on('data', (data) => {
+    console.error('Python error:', data.toString());
+    scriptError += data.toString();
+  });
+
+  pythonProcess.on('close', (code) => {
+    console.log('Python process exited with code:', code);
+    isGenerating = false;
+
+    if (code !== 0) {
+      return res.status(500).json({ error: 'Python script failed', details: scriptError });
     }
 
-    const pythonProcess = spawn('python', [pythonScript]);
-    let scriptOutput = '';
-    let scriptError = '';
+    const jsonPath = path.join(__dirname, 'public', 'api', 'debates.json');
+    if (!fs.existsSync(jsonPath)) {
+      return res.status(500).json({ error: 'debates.json not found after generation' });
+    }
 
-    pythonProcess.stdout.on('data', (data) => {
-      console.log('Python output:', data.toString());
-      scriptOutput += data.toString();
-    });
+    try {
+      console.log('Reading generated data from:', jsonPath);
+      const jsonData = fs.readFileSync(jsonPath, 'utf8');
+      console.log('Successfully read generated data');
+      res.json({ message: 'Data generated successfully', output: scriptOutput, data: JSON.parse(jsonData) });
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to read generated data', details: error.message });
+    }
+  });
 
-    pythonProcess.stderr.on('data', (data) => {
-      console.error('Python error:', data.toString());
-      scriptError += data.toString();
-    });
-
-    pythonProcess.on('close', (code) => {
-      console.log('Python process exited with code:', code);
-      
-      if (code !== 0) {
-        console.error('Python script failed:', scriptError);
-        return res.status(500).json({ 
-          error: 'Python script failed', 
-          details: scriptError 
-        });
-      }
-
-      // Try to read the generated data
-      const jsonPath = path.join(__dirname, 'public', 'api', 'debates.json');
-      try {
-        console.log('Reading generated data from:', jsonPath);
-        const jsonData = fs.readFileSync(jsonPath, 'utf8');
-        console.log('Successfully read generated data');
-        const parsedData = JSON.parse(jsonData);
-        
-        res.json({ 
-          message: 'Data generated successfully',
-          output: scriptOutput,
-          data: parsedData
-        });
-      } catch (error) {
-        console.error('Error reading generated data:', error);
-        res.status(500).json({ 
-          error: 'Failed to read generated data',
-          details: error.message
-        });
-      }
-    });
-
-    pythonProcess.on('error', (error) => {
-      console.error('Failed to start Python process:', error);
-      res.status(500).json({ 
-        error: 'Failed to start Python process',
-        details: error.message
-      });
-    });
-  } finally {
+  pythonProcess.on('error', (error) => {
+    console.error('Failed to start Python process:', error);
     isGenerating = false;
-  }
+    res.status(500).json({ error: 'Failed to start Python process', details: error.message });
+  });
 });
 
-const PORT = 3001;
+// Start server on Render
 app.listen(PORT, () => {
-  console.log('\n=== Server Started ===');
-  console.log(`Server running on http://localhost:${PORT}`);
-  console.log(`Test endpoint: http://localhost:${PORT}/test`);
-  console.log(`Debates endpoint: http://localhost:${PORT}/api/debates`);
-  console.log('===================\n');
-}); 
+  console.log(`\n=== Server Started on ${PORT} ===`);
+});
