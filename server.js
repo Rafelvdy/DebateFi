@@ -12,8 +12,10 @@ const PORT = process.env.PORT || 10000;
 
 // Allowed frontend origins (Add your frontend URL + local development)
 const allowedOrigins = [
-  'https://debatefi-22.onrender.com',  // Deployed frontend
-  'http://localhost:5173'  // Local frontend
+  'https://debatefi.com',          // ✅ New Custom Domain
+  'https://www.debatefi.com',      // ✅ Optional if you also use 'www'
+  'https://debatefi-22.onrender.com',  // Old frontend (Can remove if no longer needed)
+  'http://localhost:5173'          // Local Development
 ];
 
 app.use(cors({
