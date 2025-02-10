@@ -6,7 +6,7 @@ import "./App.css";
 import { Debate } from "./types/Debate";
 
 // Dynamically set API URL for deployment
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://your-backend-service.onrender.com";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://debatefi-19.onrender.com";
 
 const App: React.FC = () => {
   const [debates, setDebates] = useState<Debate[]>([]);
