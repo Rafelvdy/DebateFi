@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 10000;
 
 // Allowed frontend origins (Add your frontend URL + local development)
 const allowedOrigins = [
-  'https://debatefi-21.onrender.com',  // Deployed frontend
+  'https://debatefi-22.onrender.com',  // Deployed frontend
   'http://localhost:5173'  // Local frontend
 ];
 
