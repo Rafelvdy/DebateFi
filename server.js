@@ -6,24 +6,27 @@ const fs = require('fs');
 
 const app = express();
 
-// Configure CORS to allow requests from your React app
+// ✅ Use `process.env.PORT` assigned by Render, fallback to `3001` locally
+const PORT = process.env.PORT || 3001;
+
+// ✅ Allow all origins (modify if needed for security)
 app.use(cors({
-  origin: 'http://localhost:5173', // Vite's default port
+  origin: '*', // Change this if needed
   methods: ['GET', 'POST'],
   credentials: true
 }));
 
 app.use(express.json());
 
-// Serve static files from the public directory
+// ✅ Serve static files correctly
 app.use('/api', express.static(path.join(__dirname, 'public', 'api')));
 
-// Test endpoint to verify server is running
+// ✅ Test route to confirm server is running
 app.get('/test', (req, res) => {
-  res.json({ message: 'Server is running' });
+  res.json({ message: 'Server is running on port ' + PORT });
 });
 
-// Endpoint to get current debates
+// ✅ Fetch debates from `public/api/debates.json`
 app.get('/api/debates', (req, res) => {
   const jsonPath = path.join(__dirname, 'public', 'api', 'debates.json');
   try {
@@ -37,8 +40,7 @@ app.get('/api/debates', (req, res) => {
   }
 });
 
-let isGenerating = false;
-
+// ✅ Run Python script when requested
 app.post('/api/generate', async (req, res) => {
   if (isGenerating) {
     return res.status(429).json({ message: 'Generation already in progress' });
@@ -48,17 +50,14 @@ app.post('/api/generate', async (req, res) => {
     isGenerating = true;
     console.log('\n--- Starting Debate Generation ---');
     const pythonScript = path.join(__dirname, 'python', 'generate_debates.py');
-    console.log('Python script path:', pythonScript);
 
-    // Check if the Python script exists
     if (!fs.existsSync(pythonScript)) {
-      console.error('Python script not found at:', pythonScript);
+      console.error('Python script not found:', pythonScript);
       return res.status(500).json({ error: 'Python script not found' });
     }
 
     const pythonProcess = spawn('python', [pythonScript]);
-    let scriptOutput = '';
-    let scriptError = '';
+    let scriptOutput = '', scriptError = '';
 
     pythonProcess.stdout.on('data', (data) => {
       console.log('Python output:', data.toString());
@@ -72,54 +71,29 @@ app.post('/api/generate', async (req, res) => {
 
     pythonProcess.on('close', (code) => {
       console.log('Python process exited with code:', code);
-      
       if (code !== 0) {
-        console.error('Python script failed:', scriptError);
-        return res.status(500).json({ 
-          error: 'Python script failed', 
-          details: scriptError 
-        });
+        return res.status(500).json({ error: 'Python script failed', details: scriptError });
       }
 
-      // Try to read the generated data
       const jsonPath = path.join(__dirname, 'public', 'api', 'debates.json');
       try {
         console.log('Reading generated data from:', jsonPath);
         const jsonData = fs.readFileSync(jsonPath, 'utf8');
-        console.log('Successfully read generated data');
-        const parsedData = JSON.parse(jsonData);
-        
-        res.json({ 
-          message: 'Data generated successfully',
-          output: scriptOutput,
-          data: parsedData
-        });
+        res.json({ message: 'Data generated successfully', output: scriptOutput, data: JSON.parse(jsonData) });
       } catch (error) {
-        console.error('Error reading generated data:', error);
-        res.status(500).json({ 
-          error: 'Failed to read generated data',
-          details: error.message
-        });
+        res.status(500).json({ error: 'Failed to read generated data', details: error.message });
       }
-    });
-
-    pythonProcess.on('error', (error) => {
-      console.error('Failed to start Python process:', error);
-      res.status(500).json({ 
-        error: 'Failed to start Python process',
-        details: error.message
-      });
     });
   } finally {
     isGenerating = false;
   }
 });
 
-const PORT = 3001;
+// ✅ Start server and listen on correct port
 app.listen(PORT, () => {
   console.log('\n=== Server Started ===');
-  console.log(`Server running on http://localhost:${PORT}`);
-  console.log(`Test endpoint: http://localhost:${PORT}/test`);
-  console.log(`Debates endpoint: http://localhost:${PORT}/api/debates`);
+  console.log(`✅ Server running on port ${PORT}`);
+  console.log(`🔹 Test: http://localhost:${PORT}/test`);
+  console.log(`🔹 API: http://localhost:${PORT}/api/debates`);
   console.log('===================\n');
-}); 
+});
