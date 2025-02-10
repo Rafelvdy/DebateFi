@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import DebateCard from './components/DebateCard';
 import './App.css';
 import { Debate } from './types/Debate';
+import API_BASE_URL from './config'; // ✅ Import dynamic API URL
 
 const App: React.FC = () => {
   const [debates, setDebates] = useState<Debate[]>([]);
@@ -12,8 +13,10 @@ const App: React.FC = () => {
   useEffect(() => {
     const generateAndFetchDebates = async () => {
       try {
-        // First fetch existing debates
-        const response = await fetch('http://localhost:3001/api/debates');
+        // ✅ Use dynamic API URL
+        const response = await fetch(`${API_BASE_URL}/api/debates`);
+        if (!response.ok) throw new Error('Failed to fetch debates');
+
         const jsonData = await response.json();
         const debateArray = Object.values(jsonData.data).map((item: any) => ({
           id: Math.random().toString(36).substr(2, 9),
@@ -21,13 +24,13 @@ const App: React.FC = () => {
         }));
         setDebates(debateArray);
 
-        // Then generate new debates
-        await fetch('http://localhost:3001/api/generate', {
-          method: 'POST'
-        });
+        // ✅ Generate new debates
+        await fetch(`${API_BASE_URL}/api/generate`, { method: 'POST' });
 
-        // Fetch updated debates after generation
-        const updatedResponse = await fetch('http://localhost:3001/api/debates');
+        // ✅ Fetch updated debates
+        const updatedResponse = await fetch(`${API_BASE_URL}/api/debates`);
+        if (!updatedResponse.ok) throw new Error('Failed to fetch updated debates');
+
         const updatedJsonData = await updatedResponse.json();
         const updatedDebateArray = Object.values(updatedJsonData.data).map((item: any) => ({
           id: Math.random().toString(36).substr(2, 9),
@@ -47,27 +50,19 @@ const App: React.FC = () => {
     
     let filtered = [...debates];
 
-    // Filter out debates with N/A tickers
+    // ✅ Remove invalid debates
     filtered = filtered.filter(debate => debate.ticker !== "N/A");
 
-    // Define priority order for pinned tickers
+    // ✅ Prioritize pinned tickers
     const pinnedOrder = ["ETH", "SOL", "BNB", "BTC"];
 
-    // Apply sorting
     filtered.sort((a, b) => {
-      // Get index of tickers in pinnedOrder (-1 if not found)
       const aIndex = pinnedOrder.indexOf(a.ticker);
       const bIndex = pinnedOrder.indexOf(b.ticker);
-      
-      // If both are pinned, sort by pinnedOrder
-      if (aIndex !== -1 && bIndex !== -1) {
-        return aIndex - bIndex;
-      }
-      
-      // If only one is pinned, it goes first
+
+      if (aIndex !== -1 && bIndex !== -1) return aIndex - bIndex;
       if (aIndex !== -1) return -1;
       if (bIndex !== -1) return 1;
-      
       return 0;
     });
 
@@ -101,10 +96,11 @@ const App: React.FC = () => {
                   onClick={async () => {
                     try {
                       setIsLoading(true);
-                      await fetch('http://localhost:3001/api/generate', {
-                        method: 'POST'
-                      });
-                      const response = await fetch('http://localhost:3001/api/debates');
+                      await fetch(`${API_BASE_URL}/api/generate`, { method: 'POST' });
+
+                      const response = await fetch(`${API_BASE_URL}/api/debates`);
+                      if (!response.ok) throw new Error('Failed to fetch debates');
+
                       const jsonData = await response.json();
                       const debateArray = Object.values(jsonData.data).map((item: any) => ({
                         id: Math.random().toString(36).substr(2, 9),
@@ -134,9 +130,7 @@ const App: React.FC = () => {
                 ) : (
                   Object.entries(
                     getFilteredAndSortedDebates().reduce((acc, debate) => {
-                      if (!acc[debate.ticker]) {
-                        acc[debate.ticker] = [];
-                      }
+                      if (!acc[debate.ticker]) acc[debate.ticker] = [];
                       acc[debate.ticker].push(debate);
                       return acc;
                     }, {} as Record<string, Debate[]>)
