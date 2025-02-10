@@ -11,7 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Use environment variable for frontend origin (so it works locally & on Render)
-const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || 'https://your-frontend.onrender.com';
+const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || 'https://debatefi-20.onrender.com';
 
 app.use(cors({
   origin: FRONTEND_ORIGIN,
