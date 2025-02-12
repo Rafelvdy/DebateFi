@@ -10,30 +10,42 @@ const app = express();
 // Use Render's dynamic PORT (Ensuring it's correctly set)
 const PORT = process.env.PORT || 10000;
 
-// Allowed frontend origins (Add your frontend URL + local development)
-const allowedOrigins = [
-  'https://debatefi.com',          // ✅ New Custom Domain
-  'https://www.debatefi.com',      // ✅ Optional if you also use 'www'
-  'https://debatefi-22.onrender.com',  // Old frontend (Can remove if no longer needed)
-  'http://localhost:5173'          // Local Development
-];
-
+// Updated CORS configuration
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  methods: ['GET', 'POST'],
-  credentials: true
+    origin: ['http://localhost:5173', 'http://localhost:10000', 'https://debatefi-21.onrender.com'],
+    methods: ['GET', 'POST', 'OPTIONS'],
+    credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept']
 }));
 
 app.use(express.json());
 
+// Serve JSON data directly for testing
+app.get('/', (req, res) => {
+  const jsonPath = path.join(__dirname, 'public', 'api', 'debates.json');
+  
+  if (!fs.existsSync(jsonPath)) {
+    return res.json({ message: 'No debates data found' });
+  }
+
+  try {
+    const jsonData = fs.readFileSync(jsonPath, 'utf8');
+    res.json(JSON.parse(jsonData));
+  } catch (error) {
+    res.status(500).json({ error: 'Error reading debates data' });
+  }
+});
+
 // Serve static API data
 app.use('/api', express.static(path.join(__dirname, 'public', 'api')));
+
+// Serve static files from the 'dist' directory
+app.use(express.static(path.join(__dirname, 'dist')));
+
+// Handle root path
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
 
 // Test API endpoint
 app.get('/test', (req, res) => {
@@ -69,7 +81,7 @@ app.post('/api/generate', async (req, res) => {
 
   isGenerating = true;
   console.log('\n--- Starting Debate Generation ---');
-  const pythonScript = path.join(__dirname, 'python', 'generate_debates.py');
+  const pythonScript = path.join(__dirname, 'scripts', 'generate_debates.py');
 
   if (!fs.existsSync(pythonScript)) {
     console.error('Python script not found at:', pythonScript);
@@ -119,6 +131,9 @@ app.post('/api/generate', async (req, res) => {
     res.status(500).json({ error: 'Failed to start Python process', details: error.message });
   });
 });
+
+// Add OPTIONS handler for preflight requests
+app.options('*', cors());
 
 // Start server on Render
 app.listen(PORT, () => {
