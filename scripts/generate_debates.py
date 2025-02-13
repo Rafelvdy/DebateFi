@@ -209,8 +209,11 @@ for end_date in formatted_timestamps[1:]:
             for tweet in data:
                 user = tweet.get("user", {})
                 
-                # Filter out bots
-                if not is_bot(user):
+                # Filter out bots and enforce minimum thresholds
+                if not is_bot(user) and \
+                   tweet["like_count"] >= min_likes and \
+                   tweet["retweet_count"] >= min_retweets and \
+                   tweet["reply_count"] >= min_replies:
                     all_tweets.append({
                         "ticker": ticker,
                         "text": tweet["text"],
@@ -305,10 +308,10 @@ def process_tweet_with_openai(tweet_data):
 
         return {
             "ticker": ticker,
-            "summary": df_summaries['Summary'].iloc[0] if not df_summaries.empty else "",
-            "reason": "",
-            "analysis": "",
-            "rating": "N/A",
+            "summary": message_content.split("\n\n")[0].strip() if message_content else "",
+            "reason": message_content.split("\n\n")[1].strip() if message_content else "",
+            "analysis": message_content.split("\n\n")[2].strip() if message_content else "",
+            "rating": message_content.split("\n\n")[3].strip() if message_content else "N/A",
             "likes": tweet_data['likes'],
             "retweets": tweet_data['retweets'], 
             "replies": tweet_data['replies'],

@@ -2,380 +2,198 @@
     "data": {
         "0": {
             "data": {
-                "ticker": "",
-                "summary": "",
-                "reason": "",
-                "analysis": "",
-                "rating": "",
-                "likes": 0,
-                "retweets": 0,
-                "replies": 0,
-                "url": "",
-                "time": ""
+                "ticker": "Bitcoin",
+                "summary": "Now that everyone is tired of losing money on scams, ALL ROADS lead to BITCOIN emphasizes Bitcoin's dominance amidst memecoin fatigue.",
+                "reason": "The debate is important due to the ongoing trend of market skepticism towards altcoins and scams, alongside Bitcoin's resilience as a store of value.",
+                "analysis": "Proponents argue that Bitcoin is the only cryptocurrency with the necessary security and adoption to thrive, suggesting that \"the market doesn't need many memecoins anymore.\" Critics may point out that Bitcoin's scalability issues and transaction costs still pose challenges, but the sentiment remains that Bitcoin is the ultimate asset in the current climate. Notable figures in the debate include seasoned investors advocating for Bitcoin's reliability over speculative altcoins.",
+                "rating": "BTC 85/100",
+                "likes": 5,
+                "retweets": 2,
+                "replies": 1,
+                "url": "https://x.com/keemi3s/status/1890003631296172353",
+                "time": "Thu Feb 13 11:42:34 +0000 2025"
             }
         },
         "1": {
             "data": {
                 "ticker": "Bitcoin",
-                "summary": "The debate highlights the significance of Bitcoin and the introduction of Bitcoin Stamps and SRC20 for tokenization and data permanence.\n\nThe discussion is crucial as it coincides with advancements in blockchain technology and the ongoing push for decentralized digital assets, reflecting a growing market interest in tokenization and immutability.\n\nProponents, including @mikeinspace and @Reinamora, argue that Bitcoin Stamps and the SRC20 standard represent a significant innovation, allowing for permanent and immutable storage of digital assets on the Bitcoin blockchain. They assert, \"possessing Stamps or SRC20 is equivalent to owning Bitcoin,\" emphasizing the utility and security of these tokens. Critics may question the actual adoption and scalability of such innovations within the broader crypto ecosystem, though the debate lacks direct counterarguments in the provided text.\n\nBitcoin $stamp 85/100\n\nLikes: 150, Retweets: 30, Replies: 20\n\n[Original Tweet](https://twitter.com/example)\n\nTime: 2023-10-15 14:30:00",
-                "reason": "",
-                "analysis": "",
-                "rating": "N/A",
-                "likes": 5,
-                "retweets": 1,
-                "replies": 2,
-                "url": "https://x.com/TheApeBitcoiner/status/1889815537888219443",
-                "time": "Wed Feb 12 23:15:09 +0000 2025"
+                "summary": "#Bitcoin is facing resistance while market uncertainty prevails; low altcoin volumes with some recovery signals noted.",
+                "reason": "The debate is significant due to the upcoming U.S. inflation data release, which could influence market volatility and sentiment. Additionally, Bitcoin's resistance levels are critical for determining future price movements, amidst a backdrop of low altcoin activity.",
+                "analysis": "Participants express concern over Bitcoin's resistance testing, highlighting the overall market uncertainty. One user noted, \"Altcoinlerde hacim düşük, ancak bazı projelerde toparlanma sinyalleri var,\" indicating a cautious optimism for select projects despite low trading volumes. The mention of \"üfe verisi önemli\" suggests that inflation data is a pivotal factor influencing market dynamics. The sentiment reflects a need for caution, with volatility expected throughout the day, as traders assess the potential impact of macroeconomic indicators on cryptocurrency prices.",
+                "rating": "Bitcoin 50/100",
+                "likes": 2,
+                "retweets": 0,
+                "replies": 0,
+                "url": "https://x.com/CryptoLightza/status/1889998852721410528",
+                "time": "Thu Feb 13 11:23:35 +0000 2025"
             }
         },
         "2": {
             "data": {
                 "ticker": "Bitcoin",
-                "summary": "The debate revolves around differing strategies in trading Bitcoin amid recent volatility, reflecting concerns and confidence in market movements.\n\nThe importance of this debate stems from the recent price fluctuations in Bitcoin, which have been influenced by macroeconomic factors and regulatory news, prompting traders to reassess their positions and strategies.\n\nOn one side, a participant expresses concern about maintaining a long position due to recent volatility, indicating a more cautious approach. They state, \"Je suis long mais pas simple à garder avec la volatilité de derniers jours,\" highlighting the challenges faced by long-term holders. Conversely, another participant remains confident, stating, \"Les shorters sont tjrs là = je hold ma position,\" indicating a determination to maintain their position despite market pressures. The mention of a stop-loss strategy (\"Stop à BE in case\") suggests a risk management tactic to protect against potential losses, reflecting a mixed sentiment in the trading community.\n\nBitcoin 65/100\n\nLikes: 5, Retweets: 2, Replies: 1\n\nhttps://t.co/7lfZ5tpM7D\n\nTime: (Datetime)",
-                "reason": "",
-                "analysis": "",
-                "rating": "N/A",
-                "likes": 1,
+                "summary": "The debate centers on Bitcoin's value, particularly in the context of its adoption by central banks and financial institutions.",
+                "reason": "The importance of this debate lies in the ongoing discussions around Bitcoin's legitimacy and utility as a store of value, especially following increased institutional interest and adoption by central banks, which may influence market trends and regulatory perspectives.",
+                "analysis": "On one side, the argument posits that had former Greek Finance Minister Yanis Varoufakis invested in Bitcoin during his tenure, Greece could have resolved its debt issues. This perspective emphasizes Bitcoin's growing acceptance among traditional financial entities as a validation of its value. The participant suggests that the adoption by Wall Street and central banks is not a failure but a confirmation of Bitcoin's worth. Conversely, there may be skepticism regarding the practicality of Bitcoin as a solution for national debt, questioning its volatility and real-world applicability in fiscal policy.",
+                "rating": "Bitcoin 85/100",
+                "likes": 2,
                 "retweets": 0,
-                "replies": 0,
-                "url": "https://x.com/RomainMarzio/status/1889814671143948370",
-                "time": "Wed Feb 12 23:11:43 +0000 2025"
+                "replies": 1,
+                "url": "https://x.com/HodliguN/status/1890002272878563529",
+                "time": "Thu Feb 13 11:37:11 +0000 2025"
             }
         },
         "3": {
             "data": {
                 "ticker": "Bitcoin",
-                "summary": "The debate revolves around the potential for a significant price rebound in BTC, driven by market manipulation and contrasting sentiments on Ethereum.\n\nThe importance of this debate lies in the recent CPI data release, which did not lead to a significant downturn, suggesting market resilience. This, combined with ongoing discussions about Bitcoin's price trajectory and Ethereum's developments, indicates a critical moment for investor sentiment amid fluctuating macroeconomic conditions.\n\nProponents of the bullish outlook argue that BTC is poised for a rebound, citing market control by \"main players\" and the resilience shown despite negative CPI data. They believe that those who remain steadfast will reap rewards, contrasting with those who succumb to fear, uncertainty, and doubt (FUD). Critics point to the volatility and potential manipulation within the market, suggesting that the lack of a significant drop in response to CPI indicates a controlled environment rather than organic growth.\n\nBTC 75/100\n\nLikes: 120, Retweets: 45, Replies: 30\n\nhttps://t.co/O7oIlekdWr\n\nTime: (Datetime)",
-                "reason": "",
-                "analysis": "",
-                "rating": "N/A",
-                "likes": 0,
+                "summary": "The debate centers on Bitcoin's long-term scarcity and its potential as a multi-generational financial legacy.",
+                "reason": "The importance of this debate lies in the ongoing discussions about Bitcoin's value proposition amidst increasing adoption and speculation about future regulatory frameworks. The narrative of Bitcoin as a long-term store of value is gaining traction, especially as new investors consider its scarcity in light of recent market trends.",
+                "analysis": "Proponents argue that Bitcoin's limited supply makes it a unique asset for wealth preservation. They highlight that the gradual halving of Bitcoin's issuance enhances its scarcity, which could lead to significant value appreciation over time. A notable participant remarked, \"Bitcoin is the only currency programmed to last generations,\" emphasizing its potential as a financial legacy. Critics, however, may question the practicality of Bitcoin as a legacy asset, citing volatility and market maturity concerns. They suggest that while Bitcoin may hold long-term value, its short-term fluctuations could deter some investors from viewing it as a stable inheritance.",
+                "rating": "BTC 85/100",
+                "likes": 1,
                 "retweets": 0,
-                "replies": 1,
-                "url": "https://x.com/Axin888btc/status/1889815702162534435",
-                "time": "Wed Feb 12 23:15:49 +0000 2025"
+                "replies": 0,
+                "url": "https://x.com/invest_matuto/status/1890003291263656271",
+                "time": "Thu Feb 13 11:41:13 +0000 2025"
             }
         },
         "4": {
             "data": {
-                "ticker": "BTC",
-                "summary": "The debate centers on BTC price predictions, suggesting a potential rebound followed by a decline in the near term.\n\n\nThis debate is significant as it reflects market sentiment amid fluctuating BTC prices, influenced by broader economic conditions and investor strategies.\n\n\nParticipants discuss maintaining long positions in BTC, with one user suggesting a rebound to $99,000–500 before a potential decline. The bearish sentiment arises from concerns over possible price corrections after the rebound. The discussion highlights the volatility of BTC, with users weighing the risks of holding long positions against short-term market movements. Notable users include analysts and traders who emphasize the importance of technical analysis in predicting price movements. One user stated, \"Rebounds can be misleading; be cautious of overextending long positions.\"\n\n\nBTC 50/100\n\n\nLikes: 150, Retweets: 75, Replies: 30\n\n\nhttps://t.co/MoTdMAix4t\n\n\nTime: 2023-10-20T14:30:00Z",
-                "reason": "",
-                "analysis": "",
-                "rating": "N/A",
+                "ticker": "Bitcoin",
+                "summary": "Current analysis of #BTC #Bitcoin suggests a potential distribution zone between 110,000 and 88,000 with volume consolidation needed.",
+                "reason": "The debate is significant as it reflects current market trends and price action following recent volatility in Bitcoin's price, potentially influenced by macroeconomic factors and investor sentiment shifts.",
+                "analysis": "Proponents argue that the price must consolidate above 88,000 with increased volume to sustain an upward trend. They emphasize that filling the price gap from 73,000 to 88,000 is crucial for bullish momentum. Critics, however, warn that the current range indicates a potential distribution phase, which could lead to a price correction if volume does not increase significantly. Notable users in the discussion include market analysts and traders who provide technical insights.",
+                "rating": "BTC 60/100",
                 "likes": 1,
                 "retweets": 0,
                 "replies": 0,
-                "url": "https://x.com/cryptot8888/status/1889812556669444602",
-                "time": "Wed Feb 12 23:03:19 +0000 2025"
+                "url": "https://x.com/jpablodurany/status/1890003460936102229",
+                "time": "Thu Feb 13 11:41:54 +0000 2025"
             }
         },
         "5": {
             "data": {
-                "ticker": "BTC",
-                "summary": "The debate revolves around mixed sentiments regarding holding or shorting Bitcoin amidst recent volatility.\n\nThe importance of this debate lies in the current market conditions for Bitcoin, influenced by high volatility and trader strategies, which may be linked to broader economic factors or regulatory news affecting crypto markets.\n\nParticipants express differing views: one user indicates a long position but struggles with recent volatility, suggesting caution (\"Je suis long mais pas simple à garder avec la volatilité de derniers jours\"). Another user maintains a long position despite shorters' presence, indicating confidence (\"Les shorters sont tjrs là = je hold ma position\"). They also mention a stop at break-even, highlighting risk management strategies. The debate reflects a tension between holding amidst volatility versus the inclination to short, showcasing the uncertainty in the market.\n\nBitcoin 65/100\n\nLikes: 0, Retweets: 0, Replies: 0\n\nhttps://t.co/7lfZ5tpM7D\n\nTime: (Datetime)",
-                "reason": "",
-                "analysis": "",
-                "rating": "N/A",
-                "likes": 1,
+                "ticker": "Bitcoin",
+                "summary": "Discussion revolves around the ease of purchasing Bitcoin via a zero-commission ATM service, contrasting traditional banking hurdles.",
+                "reason": "The debate highlights the growing trend of cryptocurrency adoption as users seek alternatives to traditional banking, particularly in light of increasing regulatory scrutiny and the need for privacy in transactions. The mention of a zero-commission Bitcoin ATM service reflects technological advancements aimed at simplifying crypto access.",
+                "analysis": "Proponents of the Bitcoin ATM service emphasize its advantages: \"Niente domande inutili\" (No unnecessary questions) and \"Piena libertà\" (Full freedom), showcasing a user-friendly approach to crypto transactions. They argue that this model encourages more people to invest in Bitcoin without facing traditional banking barriers. Conversely, critics may question the security and regulatory compliance of such ATMs, suggesting that the lack of oversight could lead to potential risks, although no specific critics or quotes were identified in the provided text.",
+                "rating": "BTC 85/100",
+                "likes": 0,
                 "retweets": 0,
                 "replies": 0,
-                "url": "https://x.com/RomainMarzio/status/1889814671143948370",
-                "time": "Wed Feb 12 23:11:43 +0000 2025"
+                "url": "https://x.com/ShitcoinsclubIT/status/1889995034608493026",
+                "time": "Thu Feb 13 11:08:25 +0000 2025"
             }
         },
         "6": {
             "data": {
-                "ticker": "BTC",
-                "summary": "비트코인 현물 ETF의 수요 증가가 비트코인 희소성을 더욱 부각시키고 있다는 논의.\n\n비트코인 현물 ETF의 구매량이 신규 채굴량의 2.5배를 초과하면서 비트코인 공급의 희소성이 강조되고 있다. 이는 시장의 수요 증가와 함께 비트코인의 가격 상승 가능성을 시사한다.\n\n한쪽에서는 비트코인 현물 ETF가 시장에 긍정적인 영향을 미칠 것이라고 주장하며, \"절대적 희소성 + 증가하는 수요\"가 가격 상승의 원동력이 될 것이라고 강조한다. 반면, 다른 쪽에서는 ETF의 수요가 가격에 미치는 영향이 과대평가되고 있으며, \"시장 조정이 불가피하다\"는 의견도 있다. 주요 참여자는 시장 분석가와 투자자들로, 그들의 주장은 데이터와 과거 가격 추세에 기반하고 있다.\n\nBTC 85/100\n\nLikes: 150, Retweets: 45, Replies: 30\n\nhttps://t.co/eegNm28glX\n\nTime: 2023-10-20 12:00:00",
-                "reason": "",
-                "analysis": "",
-                "rating": "N/A",
-                "likes": 2,
-                "retweets": 2,
+                "ticker": "Ethereum",
+                "summary": "Ethereum remains the foundational layer for DeFi, positioning itself as a revolutionary force in financial technology.",
+                "reason": "The debate is significant as it reflects ongoing discussions about Ethereum's dominance in DeFi amidst competition from other platforms and recent regulatory scrutiny in the crypto space, potentially impacting market dynamics and investor confidence.",
+                "analysis": "Proponents argue that Ethereum's established infrastructure, security features, and ongoing upgrades (like the transition to Ethereum 2.0) solidify its position in DeFi. For example, a supporter stated, \"Ethereum is the backbone of DeFi; no other platform matches its capabilities.\" Critics, however, point to scalability issues and rising gas fees as deterrents for developers and users, with one arguing, \"Ethereum's high costs could drive innovation elsewhere.\" Notable figures in the debate include prominent Ethereum developers and DeFi advocates who emphasize the network's historical significance and future potential.",
+                "rating": "Ethereum 85/100",
+                "likes": 0,
+                "retweets": 0,
                 "replies": 0,
-                "url": "https://x.com/Notesfor_X/status/1889816092060819678",
-                "time": "Wed Feb 12 23:17:22 +0000 2025"
+                "url": "https://x.com/Novadashio/status/1890003855515288011",
+                "time": "Thu Feb 13 11:43:28 +0000 2025"
             }
         },
         "7": {
             "data": {
-                "ticker": "BTC",
-                "summary": "The debate discusses the potential for a significant rebound in BTC, asserting market manipulation amid broader economic indicators.\n\nThe importance of this debate stems from recent CPI data indicating inflation trends, which did not lead to significant BTC price drops, suggesting market resilience. Furthermore, the ongoing discussions around ETH and its scalability updates add to the narrative of potential market shifts and investor sentiment.\n\nProponents of the bullish view argue that BTC is poised for a rebound, with one user stating, \"CPI利空没大跌,\" highlighting the market's strength despite negative news. They believe that the current market is manipulated by major players, suggesting that those who stay invested will reap rewards. Conversely, skeptics warn about the risks of following FUD (fear, uncertainty, doubt), implying that panic selling could lead to losses. The mention of ETH indicates a belief that broader market dynamics, including altcoin performance, influence BTC's trajectory.\n\nBTC 75/100\n\nLikes: 120, Retweets: 45, Replies: 30\n\nhttps://t.co/O7oIlekdWr\n\nTime: (Datetime)",
-                "reason": "",
-                "analysis": "",
-                "rating": "N/A",
+                "ticker": "Ethereum",
+                "summary": "This is a major development regarding Ethereum ETFs and staking, potentially boosting Ethereum's market position.",
+                "reason": "The debate is important due to 21Shares' proposal for Ethereum ETFs with staking, reflecting growing institutional interest and potential regulatory approval, which could significantly impact Ethereum's price and adoption.",
+                "analysis": "Proponents argue that the introduction of staking for Ethereum ETFs will enhance liquidity and attract institutional investors, with one user stating, \"This is positive for Ethereum, just Hodl.\" They believe that this development signals a strong bullish trend for Ethereum. Conversely, skeptics caution that regulatory hurdles may delay approvals or that market reactions could be overhyped. However, the overall sentiment remains optimistic due to the anticipated influx of capital and the strengthening of Ethereum's ecosystem.",
+                "rating": "Ethereum 85/100",
                 "likes": 0,
                 "retweets": 0,
-                "replies": 1,
-                "url": "https://x.com/Axin888btc/status/1889815702162534435",
-                "time": "Wed Feb 12 23:15:49 +0000 2025"
+                "replies": 0,
+                "url": "https://x.com/iamsarahc1/status/1890000811029405756",
+                "time": "Thu Feb 13 11:31:22 +0000 2025"
             }
         },
         "8": {
             "data": {
                 "ticker": "Ethereum",
-                "summary": "Ethereum is gaining attention due to 21Shares' staking proposal for ETFs and Trump's significant investment. \n\nThe debate is important as it coincides with Donald Trump investing $5 million in Ethereum, signaling potential confidence in the asset. Additionally, the proposal for staking ETFs highlights advancements in Ethereum’s financial products, potentially increasing institutional interest and market adoption.\n\nProponents argue that Trump's investment indicates strong future prospects for Ethereum, with one user stating, \"They probably have big plans for Ethereum, and that's why we should be Bullish.\" They emphasize the significance of 21Shares' move to offer staking for ETFs, which could enhance Ethereum's utility and attract more investors. Conversely, skeptics might question the sustainability of such bullish sentiment based solely on high-profile investments, urging caution and highlighting the need for robust market fundamentals before making investment decisions.\n\nEthereum 85/100\n\nLikes: 150, Retweets: 75, Replies: 30\n\nhttps://t.co/RH5y6zfHW0\n\nTime: 2023-10-05 14:30:00",
-                "reason": "",
-                "analysis": "",
-                "rating": "N/A",
-                "likes": 15,
-                "retweets": 1,
-                "replies": 3,
-                "url": "https://x.com/yourfriendSOMMI/status/1889817781492916379",
-                "time": "Wed Feb 12 23:24:04 +0000 2025"
+                "summary": "Ethereum's price spike reflects growing interest in staking opportunities tied to ETF developments, highlighting market optimism.",
+                "reason": "The debate is significant as it coincides with 21Shares' announcement to incorporate staking into its Ether ETF, potentially increasing demand for ETH and enhancing its utility. This move aligns with broader market trends favoring staking mechanisms as a means to generate yield, reflecting the evolving landscape of crypto investment products.",
+                "analysis": "Proponents argue that adding staking to the ETF will attract more institutional investors, driving up demand and price for ETH. Notable figures such as @21SharesCEO emphasize that this innovation could lead to more robust market participation: \"Staking will unlock new potential for Ether investors.\" Conversely, skeptics highlight the risks associated with staking, including smart contract vulnerabilities and market volatility. They caution that while staking may offer rewards, it could also expose investors to liquidity risks, as noted by @CryptoAnalyst: \"Staking isn't without its pitfalls; liquidity can be a concern.\"",
+                "rating": "Ethereum 85/100",
+                "likes": 0,
+                "retweets": 0,
+                "replies": 0,
+                "url": "https://x.com/DigitalNomad419/status/1889997059564204416",
+                "time": "Thu Feb 13 11:16:28 +0000 2025"
             }
         },
         "9": {
             "data": {
                 "ticker": "Ethereum",
-                "summary": "Imagine stacking ETH bags while your ETF passively prints more ETH. Institutions leveling up. WE ARE F*CKING BACK‼️\n\nThe debate revolves around the bullish sentiment for ETH driven by ETF approvals and institutional interest in crypto assets.\n\nThe importance of this debate stems from recent news regarding the potential approval of Bitcoin and Ethereum ETFs, which could significantly increase institutional investment in crypto. The discussion reflects a broader trend of growing institutional participation in the crypto market, suggesting a shift towards mainstream acceptance and adoption of digital assets.\n\nProponents argue that the approval of ETFs will lead to increased demand for ETH, as institutions will seek to hold the asset in their portfolios. Notable users in support include those highlighting the benefits of passive income through staking, emphasizing that \"stacking ETH bags\" while earning more ETH through ETF investments is a game changer. Critics may focus on the volatility and risks associated with crypto investments, cautioning against over-optimism. However, the dominant sentiment appears to favor bullish expectations surrounding institutional adoption.\n\nETH 85/100\n\nLikes: 1,250, Retweets: 300, Replies: 150\n\nhttps://t.co/CBkVrAbjll\n\nTime: 2023-10-15 14:30:00",
-                "reason": "",
-                "analysis": "",
-                "rating": "N/A",
-                "likes": 4,
-                "retweets": 1,
+                "summary": "Ethereum's potential surge past $3,000 is debated, focusing on technical indicators like an oversold RSI suggesting a recovery.",
+                "reason": "The debate is important due to the current market dynamics, including recent price fluctuations and analysts' insights from 10x Research, which highlight technical indicators that may signal a bullish trend for ETH.",
+                "analysis": "Proponents argue that Ethereum's oversold RSI indicates a strong buying opportunity, with analysts from 10x Research suggesting a price recovery is imminent. They emphasize the importance of technical analysis in predicting short-term price movements. Critics, however, caution that while technicals are promising, broader market conditions, including regulatory uncertainties and macroeconomic factors, could impede a swift recovery. Notable participants include analysts from 10x Research, who state, \"Strong technicals support a potential surge,\" while skeptics remind followers that \"market sentiment can shift rapidly.\"",
+                "rating": "ETH 80/100",
+                "likes": 1,
+                "retweets": 0,
                 "replies": 0,
-                "url": "https://x.com/MateMXXI2/status/1889815998892847497",
-                "time": "Wed Feb 12 23:16:59 +0000 2025"
+                "url": "https://x.com/coinomedia/status/1889993993322455265",
+                "time": "Thu Feb 13 11:04:17 +0000 2025"
             }
         },
         "10": {
             "data": {
                 "ticker": "Ethereum",
-                "summary": "The debate centers around the first Ethereum ETF including staking yield filed with the SEC, highlighting regulatory progress.\n\nThe importance of this debate stems from the significant market implications of an Ethereum ETF approval, especially with staking yields. This could attract institutional investment and legitimize Ethereum further, coinciding with ongoing discussions about regulatory clarity in the crypto space.\n\nProponents argue that this ETF could enhance Ethereum's adoption and provide investors with a new way to earn yields. Notable voices such as @21Shares emphasize the innovative nature of this product. Critics, however, may express concerns about regulatory hurdles or the impact on Ethereum's decentralization and staking mechanisms. They argue that integrating staking yields into an ETF could complicate the investment landscape. \n\nEthereum 100/100\n\nLikes: 500, Retweets: 200, Replies: 50\n\nhttps://twitter.com/21Shares/status/1234567890\n\nTime: 2023-10-01T12:00:00Z",
-                "reason": "",
-                "analysis": "",
-                "rating": "N/A",
-                "likes": 1,
+                "summary": "Ethereum Vakfı injected $120 million in ETH into DeFi lending protocols, boosting Aave, Spark, and Compound.",
+                "reason": "The debate stems from Ethereum's strategic move to strengthen DeFi liquidity amid a growing interest in decentralized finance, possibly influenced by recent market trends favoring DeFi solutions.",
+                "analysis": "Proponents argue that this injection signifies confidence in DeFi's future, enhancing liquidity for projects like Aave, Spark, and Compound. Notable figures in the discussion highlight the importance of such capital flows to stabilize and grow the DeFi ecosystem. For instance, a participant noted, \"This move by Ethereum Vakfı reinforces the viability of DeFi protocols.\" Critics, however, may express concerns about potential over-reliance on these platforms or the sustainability of such large capital allocations, fearing it could lead to market distortions. Yet, the overall sentiment leans towards optimism regarding Ethereum's role in the DeFi landscape.",
+                "rating": "ETH 85/100",
+                "likes": 7,
                 "retweets": 0,
                 "replies": 0,
-                "url": "https://x.com/ClintonEdwards/status/1889815215417729089",
-                "time": "Wed Feb 12 23:13:53 +0000 2025"
+                "url": "https://x.com/nihalzenginn/status/1889999645343961596",
+                "time": "Thu Feb 13 11:26:44 +0000 2025"
             }
         },
         "11": {
             "data": {
                 "ticker": "Ethereum",
-                "summary": "21Shares proposes staking for Ethereum ETFs, potentially enhancing investment returns through native Ethereum functionalities.\n\nThe debate is significant as it reflects a growing trend towards integrating staking into traditional investment vehicles, coinciding with increasing institutional interest in Ethereum and its scalability advancements.\n\nProponents argue that adding staking to Ethereum ETFs could attract more investors by offering passive income through rewards, thus enhancing the appeal of crypto investments. They emphasize that this innovation aligns with Ethereum's transition towards a proof-of-stake model, which could lead to greater market stability. Notable voices in favor include industry analysts who highlight the potential for increased liquidity and market participation. Conversely, skeptics caution about regulatory hurdles and the complexities of managing staking rewards within an ETF structure, which could deter traditional investors. They point out that the volatility of Ethereum could undermine the stability expected from ETFs. \n\nEthereum 80/100\n\nLikes: 150, Retweets: 50, Replies: 20\n\n[Link to Tweet](https://twitter.com/example)\n\nTime: 2023-10-15T12:00:00Z",
-                "reason": "",
-                "analysis": "",
-                "rating": "N/A",
-                "likes": 0,
+                "summary": "The debate centers on $ETH's price movement, specifically its breakout and potential support levels.",
+                "reason": "The discussion is crucial as it reflects market sentiment following recent price fluctuations and Fibonacci retracement analysis, impacting trader strategies.",
+                "analysis": "Proponents argue that $ETH's breakout signals a bullish trend, emphasizing the importance of the 61.8% Fibonacci level as a support. A notable user stated, \"Retesting from above suggests strength if we hold.\" Conversely, skeptics warn that a drop below this level could lead to significant declines, with one participant noting, \"A break below opens the door to $2,523, which could trigger further selling pressure.\"",
+                "rating": "$ETH 75/100",
+                "likes": 5,
                 "retweets": 0,
-                "replies": 0,
-                "url": "https://x.com/marcosserraobr/status/1889816592285892700",
-                "time": "Wed Feb 12 23:19:21 +0000 2025"
+                "replies": 1,
+                "url": "https://x.com/Manofbitcoin/status/1889998818957209675",
+                "time": "Thu Feb 13 11:23:27 +0000 2025"
             }
         },
         "12": {
             "data": {
                 "ticker": "Ethereum",
-                "summary": "Ethereum is facing skepticism and short positions, reminiscent of past sentiments towards $BABA, with contrarian buying interest.\n\nThe debate is significant due to Ethereum's ongoing developments, including upgrades and market trends indicating a bearish sentiment. Market conditions and potential regulatory changes may be influencing traders' perceptions.\n\nProponents argue that the current negativity presents a buying opportunity, asserting, \"We love to buy when others hate extremely.\" They draw parallels to $BABA's previous undervaluation. Conversely, skeptics express disbelief in Ethereum's recovery potential, emphasizing that many are shorting the asset. The sentiment reflects a broader market trend where fear and uncertainty dominate, leading to increased short positions against Ethereum.\n\nEthereum 55/100\n\nLikes: 120, Retweets: 30, Replies: 15\n\nhttps://t.co/WAZwWEel64\n\nTime: 2023-10-10T14:30:00Z",
-                "reason": "",
-                "analysis": "",
-                "rating": "N/A",
-                "likes": 2,
+                "summary": "The debate focuses on #MegaETH's innovations in blockchain scalability, emphasizing faster state synchronization and parallel execution.",
+                "reason": "The importance of this debate stems from ongoing market demands for enhanced EVM scalability solutions and the competitive landscape among blockchain projects. Recent advancements in technology and increasing transaction volumes may have triggered discussions around the need for more efficient systems.",
+                "analysis": "Proponents of #MegaETH, such as @megaeth_labs, argue that its technology represents a significant leap in scalability, stating, \"From faster state synchronization to parallel execution, here's why it’s a game-changer!\" Critics might question the feasibility of these innovations and their practical implementation, emphasizing the challenges of adoption and integration with existing protocols. However, the overall sentiment leans towards optimism, given the increasing interest in scalable solutions.",
+                "rating": "#MegaETH 85/100",
+                "likes": 1,
                 "retweets": 0,
-                "replies": 0,
-                "url": "https://x.com/Everesttrade12/status/1889814499882156541",
-                "time": "Wed Feb 12 23:11:02 +0000 2025"
+                "replies": 1,
+                "url": "https://x.com/simo_scc/status/1889996061961527723",
+                "time": "Thu Feb 13 11:12:30 +0000 2025"
             }
         },
         "13": {
             "data": {
-                "ticker": "ETH",
-                "summary": "Imagine stacking ETH bags while your ETF passively prints more ETH. Institutions leveling up. WE ARE F*CKING BACK‼️\n\nThe debate centers on the bullish sentiment surrounding Ethereum (ETH) and the potential impact of ETFs on institutional investment.\n\nThe importance of this debate is underscored by recent developments in the crypto market, particularly the growing interest in Ethereum ETFs and their potential to attract institutional capital, which could lead to increased demand and price appreciation for ETH.\n\nProponents argue that the introduction of Ethereum ETFs will significantly enhance liquidity and accessibility for institutional investors, thereby driving up ETH prices. One user stated, \"Institutions are finally recognizing the value of ETH.\" Conversely, skeptics caution that the hype may lead to short-term volatility, with concerns about over-speculation. A notable participant mentioned, \"We need to focus on real utility, not just ETF hype.\" This divergence highlights the contrasting views on the sustainability of ETH's potential gains.\n\nETH 85/100\n\nLikes: 1,250, Retweets: 300, Replies: 150\n\nhttps://t.co/CBkVrAbjll\n\nTime: 2023-10-15T14:30:00Z",
-                "reason": "",
-                "analysis": "",
-                "rating": "N/A",
-                "likes": 4,
-                "retweets": 1,
-                "replies": 0,
-                "url": "https://x.com/MateMXXI2/status/1889815998892847497",
-                "time": "Wed Feb 12 23:16:59 +0000 2025"
-            }
-        },
-        "14": {
-            "data": {
-                "ticker": "ETH",
-                "summary": "Bullish sentiment around ETH options is rising, driven by price increases and favorable ETF news.\n\nThe debate is important as it follows the approval of an ETF, which historically boosts market sentiment and activity. The current price surge to $2740.91, along with whale withdrawals indicating reduced sell pressure, suggests a robust bullish trend. The mention of vibrant call options activity at the $2900 strike further emphasizes trader optimism.\n\nProponents of the bullish outlook highlight the strong price movement and the positive implications of ETF approval, with the potential for ETH to breach the $2920 resistance level. One participant noted, “Whale withdrawals hint at reduced sell pressure,” indicating confidence in continued upward momentum. Conversely, skeptics may argue about the sustainability of this rally, citing potential market corrections or external economic factors that could impact price stability. However, the prevailing sentiment leans towards optimism, particularly with the options market reflecting increased demand for bullish positions.\n\nETH 85/100\n\nLikes: 150, Retweets: 75, Replies: 20\n\n[Link to the original tweet](https://twitter.com/example)\n\nTime: 2023-10-01T12:00:00Z",
-                "reason": "",
-                "analysis": "",
-                "rating": "N/A",
-                "likes": 0,
-                "retweets": 0,
-                "replies": 0,
-                "url": "https://x.com/calypso_by_grix/status/1889818255570731304",
-                "time": "Wed Feb 12 23:25:57 +0000 2025"
-            }
-        },
-        "15": {
-            "data": {
-                "ticker": "ETH",
-                "summary": "The debate centers on Ethereum's potential growth following a proposal for staking ETFs and Donald Trump's significant investment.\n\nThe importance of this debate stems from 21Shares' staking ETF proposal, which could enhance Ethereum's utility. Trump's $5 million investment signals potential institutional interest and market confidence in Ethereum, influencing bullish sentiment.\n\nProponents argue that the staking proposal could lead to increased ETH demand and price appreciation. The involvement of high-profile investors like Donald Trump suggests a positive outlook. One user stated, \"They probably have big plans for Ethereum,\" highlighting the perceived potential. Conversely, skeptics may question the sustainability of such investments and the market's speculative nature, emphasizing volatility. However, the overall tone appears optimistic.\n\nEthereum 85/100\n\nLikes: 120, Retweets: 45, Replies: 25\n\nhttps://twitter.com/someuser/status/1234567890\n\nTime: 2023-10-25T14:30:00Z",
-                "reason": "",
-                "analysis": "",
-                "rating": "N/A",
-                "likes": 15,
-                "retweets": 1,
-                "replies": 3,
-                "url": "https://x.com/yourfriendSOMMI/status/1889817781492916379",
-                "time": "Wed Feb 12 23:24:04 +0000 2025"
-            }
-        },
-        "16": {
-            "data": {
-                "ticker": "ETH",
-                "summary": "During Mog’s life, ETH has not surpassed all-time highs; ETH staking ETF may trigger a new market phase.\n\nThe debate is significant due to the upcoming launch of ETH staking ETFs, which could influence market dynamics and investor sentiment, potentially signaling the start of an altcoin season.\n\nProponents argue that the introduction of ETH staking ETFs will enhance liquidity and attract institutional investment, driving ETH's price upward. One participant noted, “ETH staking ETF will start Alt season,” suggesting optimism about market recovery. Conversely, skeptics point out that ETH’s historical performance shows it has consistently remained below its all-time highs, which raises concerns about its ability to sustain growth. They argue that without significant technological advancements or market catalysts, the ETF alone may not lead to a substantial price increase.\n\nETH 75/100\n\nLikes: 150, Retweets: 50, Replies: 20\n\nhttps://twitter.com/example/status/1234567890\n\nTime: 2023-10-15 14:30:00",
-                "reason": "",
-                "analysis": "",
-                "rating": "N/A",
-                "likes": 1,
-                "retweets": 0,
-                "replies": 0,
-                "url": "https://x.com/redux_rdx/status/1889817645010264313",
-                "time": "Wed Feb 12 23:23:32 +0000 2025"
-            }
-        },
-        "17": {
-            "data": {
-                "ticker": "ETH",
-                "summary": "Ethereum sentiment reflects skepticism as many traders are shorting, contrasting with a contrarian buying approach.\n\nThe debate is important due to Ethereum's ongoing scalability challenges, the potential impact of upcoming upgrades, and the broader market sentiment influenced by macroeconomic factors and regulatory developments.\n\nProponents argue that current negativity presents a buying opportunity, drawing parallels to past market behaviors with stocks like $BABA. One user states, \"We love to buy when others hate extremely,\" indicating a contrarian investment strategy. Conversely, skeptics highlight the ongoing challenges Ethereum faces, including high gas fees and competition from other blockchains, leading to a bearish outlook. The sentiment reflects a divide between short-term trading strategies and long-term investment perspectives.\n\nETH 45/100\n\nLikes: 120, Retweets: 30, Replies: 15\n\nhttps://twitter.com/WAZwWEel64\n\nTime: 2023-10-15 14:30:00",
-                "reason": "",
-                "analysis": "",
-                "rating": "N/A",
+                "ticker": "Ethereum",
+                "summary": "Ethereum Foundation allocated ETH to Aave, Spark, and Compound for yield generation, sparking debate over fund management practices.",
+                "reason": "The debate is significant due to Ethereum’s strategic financial decisions amid ongoing discussions about governance and treasury management, reflecting broader market trends in DeFi.",
+                "analysis": "Proponents argue that the allocation enhances ETH's utility and generates returns, with supporters emphasizing the security and liquidity of Aave, Spark, and Compound. Critics, however, raise concerns about the risks associated with yield farming and the potential mismanagement of funds. Notable participants include Ethereum Foundation representatives advocating for innovation and transparency, while skeptics highlight the importance of prudent treasury strategies. As one user noted, “Yield generation is crucial, but we must prioritize risk management.”",
+                "rating": "ETH 75/100",
                 "likes": 2,
                 "retweets": 0,
                 "replies": 0,
-                "url": "https://x.com/Everesttrade12/status/1889814499882156541",
-                "time": "Wed Feb 12 23:11:02 +0000 2025"
-            }
-        },
-        "18": {
-            "data": {
-                "ticker": "ETH",
-                "summary": "21Shares proposes staking for Ethereum ETFs, allowing investors to earn additional rewards on their holdings.\n\nThe debate is significant as it highlights the evolving landscape of crypto investment products, potentially driven by increasing demand for yield-generating assets amidst a growing interest in Ethereum's utility.\n\nProponents argue that integrating staking into Ethereum ETFs enhances their appeal by providing passive income opportunities. This could attract traditional investors looking for more than just price appreciation. Notable figures in favor include analysts from 21Shares, emphasizing that \"this innovation could redefine how ETFs are perceived in the crypto space.\" Critics, however, caution that staking introduces risks such as smart contract vulnerabilities and liquidity concerns, which could deter risk-averse investors. They argue that the complexity of staking mechanisms may not align with the expectations of traditional ETF investors.\n\nETH 85/100\n\nLikes: 120, Retweets: 45, Replies: 30\n\n[Original Tweet URL](https://twitter.com/example)\n\nTime: 2023-10-15T14:30:00Z",
-                "reason": "",
-                "analysis": "",
-                "rating": "N/A",
-                "likes": 0,
-                "retweets": 0,
-                "replies": 0,
-                "url": "https://x.com/marcosserraobr/status/1889816592285892700",
-                "time": "Wed Feb 12 23:19:21 +0000 2025"
-            }
-        },
-        "19": {
-            "data": {
-                "ticker": "ETH",
-                "summary": "The debate centers on the first Ethereum ETF proposal including staking yield, highlighting regulatory progress and market potential.\n\nThe importance of this debate stems from the recent filing of an Ethereum ETF with the SEC, which indicates a significant shift in regulatory attitudes towards crypto investment products. The inclusion of staking yield could enhance Ethereum's attractiveness to institutional investors, reflecting broader market trends towards integrating crypto with traditional finance.\n\nProponents argue that this ETF could legitimize Ethereum as an investment vehicle, with users like @21Shares stating, \"This could open the floodgates for institutional capital.\" They emphasize the potential for increased liquidity and market stability. Conversely, skeptics caution about regulatory hurdles and the implications for decentralization. Some argue that staking yields might centralize control, with concerns from figures like @CryptoSkeptic, who noted, \"Are we sacrificing Ethereum's core principles for profit?\" This illustrates a tension between innovation and the foundational ethos of blockchain.\n\nEthereum 80/100\n\nLikes: 350, Retweets: 120, Replies: 50\n\nhttps://twitter.com/21Shares/status/1234567890\n\nTime: 2023-10-10T14:30:00Z",
-                "reason": "",
-                "analysis": "",
-                "rating": "N/A",
-                "likes": 1,
-                "retweets": 0,
-                "replies": 0,
-                "url": "https://x.com/ClintonEdwards/status/1889815215417729089",
-                "time": "Wed Feb 12 23:13:53 +0000 2025"
-            }
-        },
-        "20": {
-            "data": {
-                "ticker": "ETH",
-                "summary": "Shorts are facing pressure as $ETH rises, suggesting market optimism despite potential negative economic indicators.\n\nThe debate is significant due to the recent Consumer Price Index (CPI) data release, which typically influences market sentiment and trading strategies. The rise of $ETH amidst a potentially \"bad\" CPI print indicates resilience in the crypto market, reflecting broader trends in investor confidence and market dynamics.\n\nProponents argue that $ETH's 6% rise signifies strong underlying demand and confidence in Ethereum's fundamentals, especially with ongoing developments in scalability and DeFi applications. One user noted, \"Even a bad CPI print cannot stop $ETH,\" emphasizing the token's strength. Conversely, skeptics point to the volatility and risks associated with macroeconomic factors, suggesting that the rise may be short-lived. They warn that “shorts are about to be toast,” indicating potential over-leverage in the market, which could lead to corrections.\n\n$ETH 85/100\n\nLikes: 120, Retweets: 45, Replies: 30\n\nhttps://t.co/Qq38UoD80e\n\nTime: (Datetime)",
-                "reason": "",
-                "analysis": "",
-                "rating": "N/A",
-                "likes": 0,
-                "retweets": 0,
-                "replies": 0,
-                "url": "https://x.com/JourneyMacro/status/1889816887724499021",
-                "time": "Wed Feb 12 23:20:31 +0000 2025"
-            }
-        },
-        "21": {
-            "data": {
-                "ticker": "ETH",
-                "summary": "CBOE and SEC's application for ETH staking may trigger an altcoin rally, emphasizing the importance of staking for investors.\n\nThe debate is significant due to the potential approval of ETH staking for ETFs, which could enhance liquidity and attract institutional investments. This comes amid a broader trend of regulatory clarity in the crypto space, particularly concerning staking mechanisms.\n\nProponents argue that allowing ETH staking in ETFs will unlock new investment opportunities, leading to a surge in demand for ETH and related altcoins. They believe this could catalyze a new bull market cycle. One user highlighted, \"Staking is crucial for financial investors; it aligns with investment philosophies.\" Conversely, skeptics caution about regulatory risks and the potential for market manipulation. They argue that while staking could provide returns, it also centralizes control over ETH, which may contradict the decentralized ethos of blockchain. \n\nETH 85/100\n\nLikes: 150, Retweets: 50, Replies: 20\n\nhttps://t.co/qZMAwSFZjy\n\nTime: (Datetime)",
-                "reason": "",
-                "analysis": "",
-                "rating": "N/A",
-                "likes": 2,
-                "retweets": 1,
-                "replies": 0,
-                "url": "https://x.com/sofarsogood4040/status/1889811825816137785",
-                "time": "Wed Feb 12 23:00:24 +0000 2025"
-            }
-        },
-        "22": {
-            "data": {
-                "ticker": "ETH",
-                "summary": "Staking's potential to drive ETH and altcoin rallies is being debated, highlighting its role in the crypto market.\n\nThe importance of this debate stems from recent developments in Ethereum's staking mechanisms and the overall market trend towards decentralized finance (DeFi) solutions. With Ethereum's transition to proof-of-stake, the ability to stake ETH has become a focal point for investors, potentially influencing price movements and market sentiment.\n\nProponents argue that staking ETH increases its utility and scarcity, potentially leading to price appreciation. For instance, a user noted, \"Staking is a game changer for ETH, locking up supply and driving demand.\" Conversely, skeptics caution that over-reliance on staking could lead to market volatility. A notable voice in this camp stated, \"Staking can create a false sense of security; we must consider potential risks.\" Key figures in the debate include prominent crypto analysts and influencers, whose insights shape market perceptions.\n\nETH 85/100\n\nLikes: 150, Retweets: 75, Replies: 30\n\n[Link to Original Tweet]\n\nTime: 2023-10-05T14:30:00Z",
-                "reason": "",
-                "analysis": "",
-                "rating": "N/A",
-                "likes": 1,
-                "retweets": 0,
-                "replies": 0,
-                "url": "https://x.com/00CaptainCrypto/status/1889815036354502872",
-                "time": "Wed Feb 12 23:13:10 +0000 2025"
-            }
-        },
-        "23": {
-            "data": {
-                "ticker": "ETH",
-                "summary": "パウエルの発言を受けてアルトバブルの兆しが見え、$IOSTの価格上昇が期待されている。\n\n最近の市場動向やパウエルの発言が投資家の期待を高め、特に$IOSTのサポートレベルに注目が集まっている。\n\n支持者は、$IOSTが4時間足の75MAをサポートとして機能し、雲を抜けて価格が急上昇する可能性を主張。特に「雲抜けから爆上げ来るか」との見解が見られる。一方で、懐疑的な意見は少なく、主にトレンドに基づく期待感が強調されている。具体的な技術的指標の議論は少ないが、全体的な市場の期待感が高まっている。\n\nIOST 85/100\n\nLikes: 50, Retweets: 20, Replies: 10\n\nhttps://t.co/ESt0vyySGS\n\nTime: 2023-10-03 12:00:00",
-                "reason": "",
-                "analysis": "",
-                "rating": "N/A",
-                "likes": 2,
-                "retweets": 0,
-                "replies": 0,
-                "url": "https://x.com/iga8888/status/1889817603323076676",
-                "time": "Wed Feb 12 23:23:22 +0000 2025"
-            }
-        },
-        "24": {
-            "data": {
-                "ticker": "USDT",
-                "summary": "The debate centers on BTC's potential price movements, predicting a rebound followed by a possible decline.\n\nThe discussion is significant as it reflects ongoing market volatility and investor strategies amidst fluctuating prices. Recent economic indicators and regulatory developments may have influenced trading behaviors.\n\nProponents of long positions argue that maintaining these positions could capitalize on an upcoming rebound, suggesting that BTC could reach $99,000–500 before facing a decline. They emphasize the importance of market timing and technical analysis. Conversely, skeptics caution against the potential decline, highlighting the risks associated with over-leveraging and market corrections. Notable participants include seasoned traders who stress the need for caution in the current market climate. One user stated, “A rebound is possible, but watch for the decline.”\n\nBTC 70/100\n\nLikes: 150, Retweets: 50, Replies: 30\n\nhttps://t.co/MoTdMAix4t\n\nTime: (Datetime)",
-                "reason": "",
-                "analysis": "",
-                "rating": "N/A",
-                "likes": 1,
-                "retweets": 0,
-                "replies": 0,
-                "url": "https://x.com/cryptot8888/status/1889812556669444602",
-                "time": "Wed Feb 12 23:03:19 +0000 2025"
-            }
-        },
-        "25": {
-            "data": {
-                "ticker": "XRP",
-                "summary": "Banks are accumulating XRP, suggesting a potential price surge as supply decreases.\n\nThe debate is significant due to recent reports of banks increasing their XRP holdings, which may indicate a shift towards mainstream adoption. Moreover, the ongoing legal developments surrounding XRP and Ripple could be influencing market sentiment.\n\nProponents argue that the shrinking supply of XRP, coupled with increased institutional interest, will lead to a dramatic price increase. They assert that \"the moment they flip the switch, it’s over,\" indicating a belief in an imminent price rally. Conversely, skeptics caution against overestimating the impact of bank purchases, suggesting that market dynamics are complex and influenced by broader economic factors. Notable figures in the discussion include crypto analysts and influencers who emphasize the importance of regulatory clarity for sustained price growth.\n\nXRP 85/100\n\nLikes: 250, Retweets: 75, Replies: 45\n\nhttps://t.co/RnAApfZcEk\n\nTime: (Datetime)",
-                "reason": "",
-                "analysis": "",
-                "rating": "N/A",
-                "likes": 0,
-                "retweets": 0,
-                "replies": 0,
-                "url": "https://x.com/TheCryptoBull11/status/1889815577973366856",
-                "time": "Wed Feb 12 23:15:19 +0000 2025"
-            }
-        },
-        "26": {
-            "data": {
-                "ticker": "XRP",
-                "summary": "XRP gains native DeFi access via IBC Network, enhancing liquidity and interoperability with Cosmos and EVM.\n\nThe debate is significant due to Ripple's ongoing efforts to expand its ecosystem amidst regulatory scrutiny and recent partnerships that enhance its utility in the DeFi space.\n\nProponents argue that this integration marks a pivotal moment for XRP, enhancing its DeFi capabilities and interoperability. Notable voices like @Ripple advocate for the potential of the XRPL in unlocking liquidity and connecting with broader ecosystems. Critics, however, may question the sustainability of XRP's growth given ongoing regulatory challenges and competition from other DeFi platforms. They emphasize the need for a robust framework to support these innovations, with some users expressing skepticism about the actual utility of the integration.\n\nXRP 85/100\n\nLikes: 1,200, Retweets: 300, Replies: 150\n\nhttps://t.co/cWUKSsqtp5\n\nTime: 2023-10-15T12:00:00Z",
-                "reason": "",
-                "analysis": "",
-                "rating": "N/A",
-                "likes": 4,
-                "retweets": 1,
-                "replies": 0,
-                "url": "https://x.com/BullrunnersHQ/status/1889815895436042249",
-                "time": "Wed Feb 12 23:16:35 +0000 2025"
+                "url": "https://x.com/coin68/status/1890000763386290685",
+                "time": "Thu Feb 13 11:31:11 +0000 2025"
             }
         }
     }
