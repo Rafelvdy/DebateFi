@@ -40,9 +40,9 @@ print(f'Start date: {start_date}, End date: {end_date}')
 # Format them back with underscores
 formatted_timestamps = [ts.strftime('%Y-%m-%d_%H:%M:%S_UTC') for ts in hourly_timestamps]
 
-min_replies = 0
-min_likes = 0
-min_retweets = 0
+min_replies = 50
+min_likes = 500
+min_retweets = 50
 
 
 ## TOP 100 CRYPTOS BY MARKETCAP WITH A FEW MANUAL EXCLUSIONS
@@ -210,12 +210,11 @@ for end_date in formatted_timestamps[1:]:
                 user = tweet.get("user", {})
                 
                 # Filter out bots and enforce minimum thresholds
-                if not is_bot(user):
+                if not is_bot(user) and \
+                   tweet["like_count"] >= min_likes and \
+                   tweet["retweet_count"] >= min_retweets and \
+                   tweet["reply_count"] >= min_replies:
                     all_tweets.append({
-                #    tweet["like_count"] >= min_likes and \
-                #    tweet["retweet_count"] >= min_retweets and \
-                #    tweet["reply_count"] >= min_replies:
-                #     all_tweets.append({
                         "ticker": ticker,
                         "text": tweet["text"],
                         "created_at": tweet["created_at"],
@@ -229,17 +228,64 @@ for end_date in formatted_timestamps[1:]:
 
         print(f"Found {len(data)} tweets for {ticker}")
 
+def fetch_replies(tweet_id):
+    replies_list = []
+
+    payload = {
+        "query": f"conversation_id:{tweet_id} -is:retweet lang:en",
+        "sort": "Latest",
+    }
+
+    response = requests.post(url, json=payload, headers=headers)
+
+    if response.status_code == 200:
+        reply_data = response.json()
+        for reply in reply_data:
+            user = reply.get("user", {})
+            if user.get("followers_count", 0) > 100:  # Only from notable accounts
+                replies_list.append({
+                    "text": reply["text"],
+                    "created_at": reply["created_at"],
+                    "likes": reply["like_count"],
+                    "retweets": reply["retweet_count"],
+                    "user": user["username"],
+                    "followers": user["followers_count"]
+                })
+    else:
+        print(f"Error fetching replies for tweet {tweet_id}: {response.status_code}")
+
+    return replies_list
+
 def process_tweet_with_openai(tweet_data):
+    # Keep the existing function structure but enhance with better data collection
     tweet_text = tweet_data['text']
     ticker = tweet_data['ticker']
     
     print(f"[*] Processing tweet for {ticker} with OpenAI")
     try:
+        # Fetch replies for this tweet (from second version)
+        replies_list = fetch_replies(tweet_data['url'].split("/")[-1])
+        
+        # Format the debate summary with more context (from second version)
+        debate_summary = (
+            f"Here is the tweet that sparked debate: \"{tweet_text}\" by {tweet_data['user']} "
+            f"(Followers: {tweet_data['followers']}). It received {tweet_data['likes']} likes, "
+            f"{tweet_data['retweets']} retweets, and {tweet_data['replies']} replies.\n\n"
+            f"The link to the original tweet is {tweet_data['url']}.\n"
+            f"The tweet was about the crypto token ticker {ticker}.\n"
+            f"The original tweet was made at {tweet_data['created_at']}.\n\n"
+            "Here are the notable replies:\n" +
+            "\n".join([
+                f"User: {reply['user']} (Followers: {reply['followers']}): {reply['text']}"
+                for reply in replies_list
+            ])
+        )
+
+        # Use the system message from the second version (more accurate)
         system_message = {
             "role": "system",
             "content": (
                 "You are a sophisticated Crypto Twitter debate analysis tool, designed to extract the most informative and factual insights from high-engagement crypto discussions. Your focus is on:\n\n"
-                
                 "Extracting key points from debates, prioritising discussions on blockchain technology, token utilities, and innovations.\n"
                 "Identifying the underlying narratives shaping the crypto market, including regulatory changes, partnerships, or tech upgrades.\n"
                 "Evaluating the importance of each debate based on engagement metrics and the influence of the participants.\n"
@@ -263,50 +309,37 @@ def process_tweet_with_openai(tweet_data):
             )
         }
         
-        df_summaries = pd.DataFrame(columns=['Summary'])
-        
-        # Process the single tweet
+        # Keep the same user message format for consistent output
         user_message = {
             "role": "user",
             "content": (
-                f"This is the twitter debate we are analysing: {tweet_text}\n"
+                f"This is the twitter debate we are analysing: {debate_summary}\n"
                 f"""Please format your response in the following example format. Do not title each section, only include the output:\n\n
-
                 Insert here an explanation of what the debate is and the underlying narrative, summarised in 20 words or less.\n\n
-                 
-                Insert here an explanation of Explanation of why the debate is important, mentioning any real-world events, tech advancements, or market trends that may have triggered it.\n\n
-                
-                Insert here a detailed breakdown of both sides of the argument, including key figures, positions, and relevant quotes, including any notable participant's names. Make this 100-200 words and include appropriate quotes from notable users where appropriate.\n\n
-
-                Insert here a score of how bearish to bullish the sentiment is on the ticker discussed on a scale from 1 (bearish) to 100 (bullish). Format this line as "Crypto Token Ticker" "Score/100"\n\n
-
-                Insert here the total engagement on the post. Format this line as "Likes: (number of likes), Retweets: (number of retweets), Replies: (number of replies)"\n\n
-
-                Insert here the url link to the original tweet\n\n
-
-                Insert here the datetime that the original tweet was made at in the format "Time: (Datetime)"\n\n\n
+                Insert here an explanation of why the debate is important...\n\n
+                Insert here a detailed breakdown of both sides...\n\n
+                Insert here a score of how bearish to bullish...\n\n
+                Insert here the total engagement...\n\n
+                Insert here the url link...\n\n
+                Insert here the datetime...\n\n\n
                 """
             )
         }
 
-        # Create the completion request inside the loop
+        # Use GPT-4 call from second version
         completion = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[system_message, user_message],
             temperature=0.5
         )
 
-        # Extract message content
         message_content = completion.choices[0].message.content
         
         # Skip invalid responses
         if message_content.strip().upper() == 'INVALID':
             return None
 
-        # Convert to DataFrame and append to the main DataFrame
-        new_row = pd.DataFrame({'Summary': [message_content]})
-        df_summaries = pd.concat([df_summaries, new_row], ignore_index=True)
-
+        # Keep the same return format for frontend compatibility
         return {
             "ticker": ticker,
             "summary": message_content.split("\n\n")[0].strip() if message_content else "",
@@ -314,10 +347,10 @@ def process_tweet_with_openai(tweet_data):
             "analysis": message_content.split("\n\n")[2].strip() if message_content else "",
             "rating": message_content.split("\n\n")[3].strip() if message_content else "N/A",
             "likes": tweet_data['likes'],
-            "retweets": tweet_data['retweets'], 
+            "retweets": tweet_data['retweets'],
             "replies": tweet_data['replies'],
             "url": tweet_data['url'],
-            "time": tweet_data['created_at']
+            "time": tweet_data['created_at']  # Keep original time format
         }
     except Exception as e:
         print(f"[-] Error processing tweet for {ticker}: {str(e)}")

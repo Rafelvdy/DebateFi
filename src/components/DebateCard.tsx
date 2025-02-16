@@ -87,13 +87,13 @@ const DebateCard: React.FC<DebateCardProps> = ({ debate, groupedDebates, isGroup
               <div className="debate-footer">
                 <div className="engagement-metrics">
                   <span className="metric">
-                    <i className="fas fa-heart"></i> {formatNumber(groupDebate.likes || 0)}
+                    <i className="fa-regular fa-heart"></i> {formatNumber(groupDebate.likes || 0)}
                   </span>
                   <span className="metric">
-                    <i className="fas fa-retweet"></i> {formatNumber(groupDebate.retweets || 0)}
+                    <i className="fa-solid fa-retweet"></i> {formatNumber(groupDebate.retweets || 0)}
                   </span>
                   <span className="metric">
-                    <i className="fas fa-comment"></i> {formatNumber(groupDebate.replies || 0)}
+                    <i className="fa-regular fa-comment"></i> {formatNumber(groupDebate.replies || 0)}
                   </span>
                 </div>
                 <a 
@@ -168,13 +168,13 @@ const DebateCard: React.FC<DebateCardProps> = ({ debate, groupedDebates, isGroup
             <div className="debate-footer">
               <div className="engagement-metrics">
                 <span className="metric">
-                  <i className="fas fa-heart"></i> {formatNumber(debate.likes || 0)}
+                  <i className="fa-regular fa-heart"></i> {formatNumber(debate.likes || 0)}
                 </span>
                 <span className="metric">
-                  <i className="fas fa-retweet"></i> {formatNumber(debate.retweets || 0)}
+                  <i className="fa-solid fa-retweet"></i> {formatNumber(debate.retweets || 0)}
                 </span>
                 <span className="metric">
-                  <i className="fas fa-comment"></i> {formatNumber(debate.replies || 0)}
+                  <i className="fa-regular fa-comment"></i> {formatNumber(debate.replies || 0)}
                 </span>
               </div>
               <a 
@@ -238,13 +238,13 @@ const DebateCard: React.FC<DebateCardProps> = ({ debate, groupedDebates, isGroup
       <div className="debate-footer">
         <div className="engagement-metrics">
           <span className="metric">
-            <i className="fas fa-heart"></i> {formatNumber(debate.likes || 0)}
+            <i className="fa-regular fa-heart"></i> {formatNumber(debate.likes || 0)}
           </span>
           <span className="metric">
-            <i className="fas fa-retweet"></i> {formatNumber(debate.retweets || 0)}
+            <i className="fa-solid fa-retweet"></i> {formatNumber(debate.retweets || 0)}
           </span>
           <span className="metric">
-            <i className="fas fa-comment"></i> {formatNumber(debate.replies || 0)}
+            <i className="fa-regular fa-comment"></i> {formatNumber(debate.replies || 0)}
           </span>
         </div>
         <a 

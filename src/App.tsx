@@ -11,6 +11,7 @@ const API_BASE_URL = "http://localhost:10000";
 const App: React.FC = () => {
   const [debates, setDebates] = useState<Debate[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
   useEffect(() => {
     const fetchDebates = async () => {
@@ -34,6 +35,13 @@ const App: React.FC = () => {
     if (!debates) return [];
 
     let filtered = [...debates];
+
+    // Filter by ticker only
+    if (searchTerm) {
+      filtered = filtered.filter((debate) => 
+        debate.ticker.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
 
     // Filter out debates with N/A tickers
     filtered = filtered.filter((debate) => debate.ticker !== "N/A");
@@ -74,25 +82,29 @@ const App: React.FC = () => {
                   <p className="subtitle">Real-time Analysis of Crypto Twitter</p>
                 </div>
 
-                {/* Generate Debates Button */}
+                {/* Updated search placeholder to reflect ticker-only search */}
                 <div className="controls">
+                  <input
+                    type="text"
+                    placeholder="Search by ticker..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="search-input"
+                  />
                   <button
                     className="generate-button"
                     onClick={async () => {
+                      setIsLoading(true);
                       try {
-                        setIsLoading(true);
-                        await fetch(`${API_BASE_URL}/api/generate`, {
-                          method: "POST",
+                        const response = await fetch(`${API_BASE_URL}/generate`, {
+                          method: 'POST',
                         });
-                        const response = await fetch(`${API_BASE_URL}/api/debates`);
-                        const jsonData = await response.json();
-                        const debateArray = Object.values(jsonData.data).map((item: any) => ({
-                          id: Math.random().toString(36).substr(2, 9),
-                          ...item
-                        }));
-                        setDebates(debateArray);
+                        if (response.ok) {
+                          const newDebates = await response.json();
+                          setDebates(prevDebates => [...prevDebates, ...newDebates]);
+                        }
                       } catch (error) {
-                        console.error("Error generating debates:", error);
+                        console.error('Error generating debates:', error);
                       } finally {
                         setIsLoading(false);
                       }
@@ -102,14 +114,12 @@ const App: React.FC = () => {
                   </button>
                 </div>
 
-                {/* Loading Bar */}
                 {isLoading && (
                   <div className="loading-bar-container">
                     <div className="loading-bar"></div>
                   </div>
                 )}
 
-                {/* Events List */}
                 <div className="events-list">
                   {getFilteredAndSortedDebates().length === 0 ? (
                     <div className="no-debates">No debates found</div>
