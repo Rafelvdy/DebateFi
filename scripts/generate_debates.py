@@ -40,9 +40,9 @@ print(f'Start date: {start_date}, End date: {end_date}')
 # Format them back with underscores
 formatted_timestamps = [ts.strftime('%Y-%m-%d_%H:%M:%S_UTC') for ts in hourly_timestamps]
 
-min_replies = 50
-min_likes = 500
-min_retweets = 50
+min_replies = 0
+min_likes = 0
+min_retweets = 0
 
 
 ## TOP 100 CRYPTOS BY MARKETCAP WITH A FEW MANUAL EXCLUSIONS
@@ -210,11 +210,12 @@ for end_date in formatted_timestamps[1:]:
                 user = tweet.get("user", {})
                 
                 # Filter out bots and enforce minimum thresholds
-                if not is_bot(user) and \
-                   tweet["like_count"] >= min_likes and \
-                   tweet["retweet_count"] >= min_retweets and \
-                   tweet["reply_count"] >= min_replies:
+                if not is_bot(user):
                     all_tweets.append({
+                #    tweet["like_count"] >= min_likes and \
+                #    tweet["retweet_count"] >= min_retweets and \
+                #    tweet["reply_count"] >= min_replies:
+                #     all_tweets.append({
                         "ticker": ticker,
                         "text": tweet["text"],
                         "created_at": tweet["created_at"],
@@ -328,32 +329,41 @@ try:
     with open(debates_path, "r", encoding="utf-8") as file:
         existing_data = json.load(file)
 except (FileNotFoundError, json.JSONDecodeError):
-    existing_data = {"data": {}}
+    existing_data = {"data": []}  # Initialize with empty array
 
-# Process fetched tweets
+print(f"Number of tweets found: {len(all_tweets)}")
+
 processed_debates = []
 for tweet in all_tweets:
     try:
+        print(f"Processing tweet: {tweet['text'][:100]}...")  # Print first 100 chars of tweet
         analysis = process_tweet_with_openai(tweet)
         if analysis:
             processed_debates.append(analysis)
+            print("|||Successfully processed tweet and added to debates|||")
+        if analysis is None:
+            print(f"Analysis returned None for tweet")
     except Exception as e:
         print(f"[-] Failed to process tweet: {str(e)}")
         continue
+    print(f"Final number of processed debates: {len(processed_debates)}")
 
 # Modify the file saving to use your existing paths
 debates_file = os.path.join(project_root, "public", "api", "debates.json")
 
 # When saving the JSON, use your existing file structure
 if processed_debates:
-    next_index = len(existing_data['data'])
-    for debate in processed_debates:
-        existing_data['data'][str(next_index)] = {"data": debate}
-        next_index += 1
-
+    # Add new debates to the array
+    existing_data['data'].extend(processed_debates)
+    
+    # Sort all debates by time
+    existing_data['data'].sort(key=lambda x: x['time'], reverse=True)
+    
     # Save to your existing debates.json location
     with open(debates_file, "w", encoding="utf-8") as json_file:
         json.dump(existing_data, json_file, indent=4, ensure_ascii=False)
     print(f"[*] Writing {len(processed_debates)} debates to {debates_file}")
 else:
     print("No new unique debates to add")
+
+print(f"Number of processed debates: {len(processed_debates)}")

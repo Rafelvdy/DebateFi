@@ -19,7 +19,7 @@ const App: React.FC = () => {
         const jsonData = await response.json();
         const debateArray = Object.values(jsonData.data).map((item: any) => ({
           id: Math.random().toString(36).substr(2, 9),
-          ...item.data,
+          ...item
         }));
         setDebates(debateArray);
       } catch (error) {
@@ -65,7 +65,7 @@ const App: React.FC = () => {
             <div className="main-container">
               <div className="card-container">
                 {/* Logos */}
-                <img src="/DebateFi logo PNG.png" alt="DebateFi Logo" className="logo" />
+                <img src="/DebateFi-logo-PNG.png" alt="DebateFi Logo" className="logo" />
                 <img src="/torus logo.png" alt="Torus Logo" className="torus-logo" />
 
                 {/* Title and Subtitle */}
@@ -88,7 +88,7 @@ const App: React.FC = () => {
                         const jsonData = await response.json();
                         const debateArray = Object.values(jsonData.data).map((item: any) => ({
                           id: Math.random().toString(36).substr(2, 9),
-                          ...item.data,
+                          ...item
                         }));
                         setDebates(debateArray);
                       } catch (error) {
